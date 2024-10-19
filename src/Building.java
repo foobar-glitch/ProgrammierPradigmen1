@@ -37,7 +37,7 @@ public class Building {
      *
      * */
     public void demolishing(float recycleRate){
-        CostContainer leftoverMaterial = renovatingConstruct.getTotalCost();
+        CostContainer leftoverMaterial = shellConstruct.getTotalCost();
         CostContainer recycledProfit = new CostContainer(
                 leftoverMaterial.getCost() * recycleRate,
                 leftoverMaterial.getCo2() * recycleRate,
