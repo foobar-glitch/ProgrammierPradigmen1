@@ -13,8 +13,23 @@ public class MaterialBag {
         this.materialInventory = new HashMap<>();
     }
 
-    public void addMaterial(Material material, float amount) {
+    /**
+     *
+     * @param material The material we are using
+     * @param amount The amount of material we are defining
+     */
+    public void putMaterial(Material material, float amount) {
         this.materialInventory.put(material, amount);
+    }
+
+    public void subtractMaterial(Material material, float subtractAmount) {
+        float newAmount = this.materialInventory.get(material) - subtractAmount;
+        this.materialInventory.put(material, newAmount);
+    }
+
+    public void addMaterial(Material material, float addAmount) {
+        float newAmount = this.materialInventory.get(material) + addAmount;
+        this.materialInventory.put(material, newAmount);
     }
 
     /**
@@ -26,8 +41,8 @@ public class MaterialBag {
     public void calculateTotalCosts(){
         CostContainer cost;
         for (Material material : materialInventory.keySet()) {
-            //totalCost += materialInventory.get(material);
             cost = material.getCost();
+            cost.multiplyContainer(materialInventory.get(material));
             totalCost.addCostContainer(cost);
         }
     }

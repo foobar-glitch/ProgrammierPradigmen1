@@ -14,7 +14,6 @@ public class CostContainer {
         this.cost = cost;
         this.co2 = co2;
         this.waste = waste;
-
     }
 
     /**
@@ -25,6 +24,23 @@ public class CostContainer {
         cost += other.getCost();
         co2 += other.getCo2();
         waste += other.getWaste();
+    }
+
+    public void subtractCostContainer(CostContainer other){
+        cost -= other.getCost();
+        co2 -= other.getCo2();
+        waste -= other.getWaste();
+    }
+
+    /**
+     * Multiplying all costs by the amount of material
+     * @param amount of the material
+     */
+    public void multiplyContainer(float amount){
+        cost *= amount;
+        co2 *= amount;
+        waste *= amount;
+
     }
 
     public void addFinancialCost(float amount){
