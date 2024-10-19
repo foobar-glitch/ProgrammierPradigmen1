@@ -48,7 +48,15 @@ public class Building {
 
     public void age(){
         lifetime -= 1;
-        //float lostMaterial = renovatingConstruct.
+        // get waste rate of every material
+        // subtract waste from material amount
+        float wasteAmount, materialAmount;
+        for (Material material : renovatingConstruct.getMaterialInventory().keySet()) {
+            materialAmount = renovatingConstruct.getMaterialInventory().get(material);
+            wasteAmount = material.getCost().getWaste();
+            materialAmount -= wasteAmount;
+            renovatingConstruct.setMaterial(material, materialAmount);
+        }
     }
     
 

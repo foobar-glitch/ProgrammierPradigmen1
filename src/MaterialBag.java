@@ -18,7 +18,7 @@ public class MaterialBag {
      * @param material The material we are using
      * @param amount The amount of material we are defining
      */
-    public void putMaterial(Material material, float amount) {
+    public void setMaterial(Material material, float amount) {
         this.materialInventory.put(material, amount);
     }
 
@@ -49,5 +49,9 @@ public class MaterialBag {
 
     public CostContainer getTotalCost() {
         return totalCost;
+    }
+
+    public HashMap<Material, Float> getMaterialInventory() {
+        return materialInventory;
     }
 }
