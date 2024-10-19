@@ -4,8 +4,8 @@ public class Building {
     private MaterialBag shellConstruct;
     /* The materials of the building part that has to be renovated*/
     private MaterialBag renovatingConstruct;
-    /* The total costs of the building */
-    private CostContainer totalCost = new CostContainer(0, 0, 0);
+    /* The total costs of the initial building */
+    private CostContainer buildingCosts = new CostContainer(0, 0, 0);
 
     public Building(int lifetime, MaterialBag shellConstruct, MaterialBag renovatingConstruct) {
         this.lifetime = lifetime;
@@ -15,8 +15,9 @@ public class Building {
         /* Adding the costs of all elements into the total costs initially*/
         CostContainer shellCost = shellConstruct.getTotalCost();
         CostContainer renovatingCost = renovatingConstruct.getTotalCost();
-        this.totalCost.addCostContainer(shellCost);
-        this.totalCost.addCostContainer(renovatingCost);
+        this.buildingCosts.addCostContainer(shellCost);
+        this.buildingCosts.addCostContainer(renovatingCost);
     }
+
 
 }
