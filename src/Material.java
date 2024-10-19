@@ -10,5 +10,8 @@ public class Material {
         this.cost = new CostContainer(cost, co2, waste);
     }
 
+    public CostContainer getCost() {
+        return cost;
+    }
 
 }

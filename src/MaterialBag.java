@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class MaterialBag {
     /* A hashmap of the material and its amount */
     private HashMap<Material, Float> materialInventory;
+    private CostContainer totalCost;
 
     public MaterialBag() {
         this.materialInventory = new HashMap<>();
@@ -22,12 +23,16 @@ public class MaterialBag {
      *
      * @return Costs of MaterialBag
      */
-    public float calculateTotalCosts(){
-        float totalCost = 0;
+    public void calculateTotalCosts(){
+        CostContainer cost;
         for (Material material : materialInventory.keySet()) {
-            totalCost += materialInventory.get(material);
+            //totalCost += materialInventory.get(material);
+            cost = material.getCost();
+            totalCost.addCostContainer(cost);
         }
-        return totalCost;
     }
 
+    public CostContainer getTotalCost() {
+        return totalCost;
+    }
 }
