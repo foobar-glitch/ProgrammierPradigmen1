@@ -1,12 +1,14 @@
 public class Building {
     private int lifetime;
-    private MaterialBag shell;
-    private MaterialBag renovate;
+    /* The materials of the shell of the building */
+    private MaterialBag shellConstruct;
+    /* The materials of the building part that has to be renovated*/
+    private MaterialBag renovatingConstruct;
 
-    public Building(int lifetime, MaterialBag shell, MaterialBag renovate){
+    public Building(int lifetime, MaterialBag shellConstruct, MaterialBag renovatingConstruct) {
         this.lifetime = lifetime;
-        this.shell = shell;
-        this.renovate = renovate;
+        this.shellConstruct = shellConstruct;
+        this.renovatingConstruct = renovatingConstruct;
 
     }
 

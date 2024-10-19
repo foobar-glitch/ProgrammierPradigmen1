@@ -1,13 +1,11 @@
 import java.util.HashMap;
-import java.util.LinkedList;
 
+/**
+ * This stores all materials and their corresponding amounts
+ *
+ * */
 public class MaterialBag {
-    /**
-     * This stores all materials and their corresponding amounts
-     *
-     * @param materialInventory A hashmap of the material and its amount
-     * */
-
+    /* A hashmap of the material and its amount */
     private HashMap<Material, Float> materialInventory;
 
     public MaterialBag() {

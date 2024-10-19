@@ -1,21 +1,13 @@
+/**
+ * This class defines the material and its properties
+ */
 public class Material {
-    /**
-     * Calculates the sum of two integers.
-     *
-     * @param cost Costs of material per ton
-     * @param co2Usage Usage of co2 per ton of material
-     * @param wasteRate Rate at which the material deteriorates per year
-     * */
-
-    private float cost;
-    private float co2Usage;
-    private float wasteRate;
+    /* Cost of material normed for a ton */
+    private CostContainer cost;
 
 
-    public Material(float cost, float co2Usage, float wasteRate) {
-        this.cost = cost;
-        this.co2Usage = co2Usage;
-        this.wasteRate = wasteRate;
+    public Material(float cost, float co2, float waste) {
+        this.cost = new CostContainer(cost, co2, waste);
     }
 
 
