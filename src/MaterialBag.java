@@ -95,11 +95,32 @@ public class MaterialBag {
         return tmp;
     }
 
+
+    /**
+     * @return New MaterialBag containing all Waste-Materials
+     */
+    public MaterialBag getWaste(){
+        MaterialBag tmp = new MaterialBag();
+
+        for(Material m : materialInventory.keySet()){
+            tmp.setMaterial(
+                    m,
+                    materialInventory.get(m)*m.getCost().getWaste()
+            );
+        }
+
+        return tmp;
+    }
+
     /**
      * @return Number of Materials inside MaterialBag
      */
     public int size(){
-        return materialInventory.keySet().size();
+        int size = 0;
+        for(Material m: materialInventory.keySet()){
+            if(materialInventory.get(m) > 0) size++;
+        }
+        return size;
     }
 
     public CostContainer getTotalCost() { return totalCost; }
