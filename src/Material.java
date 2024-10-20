@@ -2,27 +2,28 @@
  * This class defines the material and its properties
  */
 public class Material {
-    /* Cost of material normed for a ton */
-    private CostContainer cost;
+    /* Cost of material normalized for a ton */
+    private CostContainer acquisitionCost;
     /* Cost of demolishing the material normalized to a ton */
-    private CostContainer demolish;
+    private CostContainer demolishCost;
 
     /**
      *
-     * @param cost financial cost of one ton of material
-     * @param co2 co2 usage of on ton of material
-     * @param waste waste production per ton of material and year
+     * @param acquisitionCost cost of the acquisition of the material
+     * @param demolishCost cost for demolishing the material
      */
-    public Material(float cost, float co2, float waste) {
-        this.cost = new CostContainer(cost, co2, waste);
+    public Material(CostContainer acquisitionCost, CostContainer demolishCost) {
+        //float cost, float co2, float deteriorationRate
+        this.acquisitionCost = acquisitionCost;
+        this.demolishCost = demolishCost;
     }
 
     public CostContainer getCost() {
-        return cost;
+        return acquisitionCost;
     }
 
     public CostContainer getDemolishingCost(){
-        return demolish;
+        return demolishCost;
     }
 
 

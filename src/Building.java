@@ -93,4 +93,5 @@ public class Building {
         return s/people;
     }
 
+    public CostContainer getTotalCost(){ return this.totalCosts; }
 }

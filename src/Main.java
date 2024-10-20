@@ -43,7 +43,7 @@ public class Main {
         // Simulate(building[i]) i e [0,9]
 
         Building buildingMinimal;
-        Building buildingEco;
+         Building buildingEco;
         Building buildingHighEnd;
 
         ArrayList<Building> testCases = new ArrayList<Building>();
