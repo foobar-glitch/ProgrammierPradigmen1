@@ -16,19 +16,20 @@ public class Apartment {
 
     /* Definition of the intervall [factor, 0] in which Satisfaction
     is measured in getSatisfaction */
-    private static final int  satisfactionFactor = 1;
+    private float  satisfactionFactor = 1;
 
 
     /**
      * Apartment is immediately built automatically after creating the Object
      */
-    public Apartment(MaterialBag constructionMaterial, int lifetime, int residents){
+    public Apartment(MaterialBag constructionMaterial, int lifetime, int residents, float maxHappiness){
         this.age = 0;
         this.lifetime = lifetime;
         this.residents = residents;
         this.constructionMaterial = this.material = constructionMaterial;
         this.costs = constructionMaterial.getTotalCost();
         this.wasteMaterial = new MaterialBag();
+        this.satisfactionFactor = maxHappiness;
     }
 
     /**
@@ -66,7 +67,6 @@ public class Apartment {
 
     /**
      * Renovates the Apartment completely
-     * @param renovationMaterial Material needed for Renovation
      */
     public CostContainer renovate(){
         MaterialBag tmp = constructionMaterial.copy();
@@ -77,6 +77,8 @@ public class Apartment {
         // Reset to Original Glory
         age = 0;
         material = constructionMaterial;
+
+        satisfactionFactor*=0.9;
 
         return tmp.getTotalCost();
     }
