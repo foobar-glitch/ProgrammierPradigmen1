@@ -92,7 +92,6 @@ public class Building {
 
             }
             agingCosts = agingCosts.addCostContainer(apartment.currentCost());
-            System.out.println("UP: " + agingCosts.getCo2());
         }
         return agingCosts.multiplyContainer((double) 1/numberOfResidents);
     }
