@@ -70,14 +70,17 @@ public class Building {
      * Otherwise: Specify all apartments (by index for example) and how much they'll lose for
      * the aging.
      * */
-    public void age(){
+    public CostContainer age(){
         // Renovating all apartments the same amounts
         age++;
+        CostContainer agingCosts = new CostContainer(0f, 0f, 0f);
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
-                apartment.renovate();
+                agingCosts.addCostContainer(apartment.renovate());
             }
+            agingCosts.addCostContainer(apartment.currentCost());
         }
+        return agingCosts;
     }
 
     /**
