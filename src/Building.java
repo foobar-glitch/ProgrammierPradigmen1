@@ -39,7 +39,7 @@ public class Building {
         CostContainer renovatingCost = new CostContainer(0, 0, 0);
         int i = this.renovationIndex;
         int amountApartments = (int) (this.apartments.length * percentageRenovated);
-        CostContainer cost;
+        CostContainer cost = new CostContainer(0f, 0f, 0f);
         for(; i <= this.renovationIndex+amountApartments % this.apartments.length; i++){
             cost = apartments[i].renovate();
             renovatingCost.addCostContainer(cost);

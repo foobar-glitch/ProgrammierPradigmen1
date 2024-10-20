@@ -61,7 +61,7 @@ public class Main {
         String[] namesTestCases = {"Minimal", "Oekologisch", "Hochwertig"};
 
         for (int i = 0; i < testCases.size(); i++) {
-            System.out.printf("Test case %d: %s%n", namesTestCases[i]);
+            System.out.printf("Test case %d: %s%n",i, namesTestCases[i]);
             System.out.println();
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
