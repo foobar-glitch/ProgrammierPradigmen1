@@ -4,6 +4,8 @@
 public class Material {
     /* Cost of material normed for a ton */
     private CostContainer cost;
+    /* Cost of demolishing the material normalized to a ton */
+    private CostContainer demolish;
 
     /**
      *
@@ -18,5 +20,10 @@ public class Material {
     public CostContainer getCost() {
         return cost;
     }
+
+    public CostContainer getDemolishingCost(){
+        return demolish;
+    }
+
 
 }

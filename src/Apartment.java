@@ -1,7 +1,9 @@
 public class Apartment {
 
     /* Material used to build and renovate the apartment */
-    private MaterialBag constructionMaterial;
+    private final MaterialBag constructionMaterial;
+    /* Material currently in the Building */
+    private MaterialBag material;
 
     /* Material which is currently wasted in the year */
     private MaterialBag wasteMaterial;
@@ -24,7 +26,7 @@ public class Apartment {
         this.age = 0;
         this.lifetime = lifetime;
         this.residents = residents;
-        this.constructionMaterial = constructionMaterial;
+        this.constructionMaterial = this.material = constructionMaterial;
         this.costs = constructionMaterial.getTotalCost();
         this.wasteMaterial = new MaterialBag();
     }
@@ -41,7 +43,7 @@ public class Apartment {
         wasteMaterial = wasteMaterial.add(
                 waste
         );
-        constructionMaterial = constructionMaterial.add(
+        material = material.add(
                 waste.times(-1)
         );
 
@@ -68,6 +70,7 @@ public class Apartment {
      */
     public void renovate(MaterialBag renovationMaterial){
         age=0;
+        material = material.add(renovationMaterial);
         this.costs.addCostContainer(renovationMaterial.getTotalCost());
     }
 

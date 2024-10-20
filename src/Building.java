@@ -80,4 +80,19 @@ public class Building {
         return lifetime > 0;
     }
 
+    /**
+     * @return Average Satisfaction of the Residents
+     */
+    public float satisfaction(){
+
+        float s = 0.0f;
+        int people = 0;
+        for(int i=0; i<apartments.length; i++){
+            people+=apartments[i].getNumberOfResidents();
+            s+=apartments[i].getSatisfaction()*apartments[i].getNumberOfResidents();
+        }
+
+        return s/people;
+    }
+
 }
