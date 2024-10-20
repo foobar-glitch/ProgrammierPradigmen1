@@ -106,10 +106,17 @@ public class Apartment {
     /**
      * Demolishes the Apartment and returns all costs
      */
-    public CostContainer demolish(){
+    public CostContainer demolish(float recycleRate){
         // TODO: Change this line and add demolishing costs
-        this.costs.addCostContainer(constructionMaterial.getTotalCost());
-        return this.costs;
+        CostContainer leftoverMaterial = material.getTotalCost();
+        CostContainer recycledProfit = new CostContainer(
+                leftoverMaterial.getCost() * recycleRate,
+                leftoverMaterial.getCo2() * recycleRate,
+                leftoverMaterial.getWaste() * recycleRate
+        );
+        CostContainer tmp = material.getTotalCost();
+        tmp.subtractCostContainer(recycledProfit);
+        return tmp;
     }
 
 }
