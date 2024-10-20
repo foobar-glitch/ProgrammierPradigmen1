@@ -33,6 +33,10 @@ public class Main {
         for(int i = 0; i < numberOfApartments; i++){
             allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber);
         }
+
+        Building building = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments);
+        // simulate building:
+        // Simulate(building[i]) i e [0,9]
         
     }
 }

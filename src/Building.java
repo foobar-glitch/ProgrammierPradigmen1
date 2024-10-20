@@ -14,7 +14,7 @@ public class Building {
      *
      * @param lifetime the general lifetime of the building
      * @param shellConstruct the shell construction of the building
-     * @param apartmentsWithResidents every apartment's material with its resident
+     * @param apartments array of all apartments
      */
     public Building(
             int lifetime,
