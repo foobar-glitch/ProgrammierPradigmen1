@@ -14,7 +14,7 @@ public class Simulation {
         this.happinessPerYear = new ArrayList<Float>();
     }
 
-    public SimulationResult runSim() {
+    public SimulationResult runSimulation() {
         while (building.checkAge()) {
             CostContainer costsThisYear = new CostContainer(0.0f, 0.0f, 0.0f);
             costsThisYear.addCostContainer(building.betriebskosten());
