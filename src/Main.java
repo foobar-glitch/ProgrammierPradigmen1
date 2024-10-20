@@ -65,8 +65,8 @@ public class Main {
             }
 
             // TODO ist der Median hier eine gute Metrik um einen raepresentativen Simulationsdurchlauf zu finden?
-            results.sort((r1, r2)
-                    -> (int) Math.rint(r1.getSustainabilityScore() - r2.getSustainabilityScore()));
+                results.sort((r1, r2)
+                        -> (int) Math.signum(r1.getSustainabilityScore() - r2.getSustainabilityScore()));
             SimulationResult medianResult = results.get(results.size()/2 + 1);
             System.out.println();
             System.out.printf("Alle Kennzahlen fuer den Simulationsdurchlauf mit dem Median-Nachhaltigkeits-Score:%n");
