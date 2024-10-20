@@ -22,13 +22,8 @@ public class Simulation {
             // amount of renovations will be correctly scaled for number of apartment and
             // the time it should take for a full renovation by the gebauede
             // random function can be anything as long as expected value = 1
-<<<<<<< HEAD
-            float renovations = (float) Math.random();
-            costsThisYear = costsThisYear.addCostContainer(building.renovate(renovations));
-=======
             double renovations = (double) Math.random();
-            costsThisYear.addCostContainer(building.renovate(renovations));
->>>>>>> 53628ceb640aff10c414939d5e8926f232e9d3b3
+            costsThisYear = costsThisYear.addCostContainer(building.renovate(renovations));
             System.out.println("CO2_3: " + costsThisYear.getCo2());
 
             double randomVal = Math.random();

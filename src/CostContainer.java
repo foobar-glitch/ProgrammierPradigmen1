@@ -43,8 +43,7 @@ public class CostContainer {
      * Multiplying all costs by the amount of material
      * @param amount of the material
      */
-<<<<<<< HEAD
-    public CostContainer multiplyContainer(float amount){
+    public CostContainer multiplyContainer(double amount){
         CostContainer tmp = new CostContainer(cost, co2, waste);
 
         tmp.cost *= amount;
@@ -52,25 +51,6 @@ public class CostContainer {
         tmp.waste *= amount;
         return tmp;
 
-=======
-    public void multiplyContainer(double amount){
-        cost *= amount;
-        co2 *= amount;
-        waste *= amount;
-
-    }
-
-    public void addFinancialCost(double amount){
-        this.cost += amount;
-    }
-
-    public void addCo2(double amount){
-        this.co2 += amount;
-    }
-
-    public void addWaste(double amount){
-        this.waste += amount;
->>>>>>> 53628ceb640aff10c414939d5e8926f232e9d3b3
     }
 
     public double getCost(){
