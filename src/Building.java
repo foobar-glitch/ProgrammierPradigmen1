@@ -62,9 +62,10 @@ public class Building {
      * Otherwise: Specify all apartments (by index for example) and how much they'll lose for
      * the aging.
      * */
-    public void age(MaterialBag renovateAmount){
-        // Renovating all apartments the same amount
+    public void age(){
+        // Renovating all apartments the same amounts
         age++;
+        MaterialBag renovateAmount = apartments[0].getConstructionMaterial();
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
                 apartment.renovate(renovateAmount);
