@@ -14,6 +14,9 @@ public class Apartment {
     private static final int  satisfactionFactor = 1;
 
 
+    /**
+     * Apartment is immediately built automatically after creating the Object
+     */
     public Apartment(MaterialBag constructionMaterial, int lifetime, int residents){
         this.age = 0;
         this.lifetime = lifetime;
@@ -27,6 +30,8 @@ public class Apartment {
      * @return FALSE if the Apartment exceeded its lifetime
      * */
     public boolean update(){
+        // TODO: Calculate annual costs to cost vector
+        // TODO: Perhaps automatically demolish Apartment if exceeds lifetime
         age+=1;
         return age<=lifetime;
     }
@@ -66,6 +71,7 @@ public class Apartment {
      * Demolishes the Apartment and returns all costs
      */
     public CostContainer demolish(){
+        // TODO: Change this line and add demolishing costs
         this.costs.addCostContainer(constructionMaterial.getTotalCost());
         return this.costs;
     }
