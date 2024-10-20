@@ -14,7 +14,7 @@ public class Building {
      *
      * @param lifetime the general lifetime of the building
      * @param shellConstruct the shell construction of the building
-     * @param apartmentsWithResidents every apartment with its resident
+     * @param apartmentsWithResidents every apartment's material with its resident
      */
     public Building(
             int lifetime,
@@ -63,16 +63,18 @@ public class Building {
         this.totalCosts.subtractCostContainer(recycledProfit);
     }
 
-    public void age(){
+    /**
+     * Currently renovating all apartments with the same amount of renovating material.
+     * Otherwise: Specify all apartments (by index for example) and how much they'll lose for
+     * the aging.
+     * */
+    public void age(MaterialBag renovateAmount){
+        // Renovating all apartments the same amount
         lifetime -= 1;
-        // get waste rate of every material
-        // subtract waste from material amount
-        float wasteAmount, materialAmount;
-        for (Material material : renovatingConstruct.getMaterialInventory().keySet()) {
-            materialAmount = renovatingConstruct.getMaterialInventory().get(material);
-            wasteAmount = material.getCost().getWaste();
-            materialAmount -= wasteAmount;
-            renovatingConstruct.setMaterial(material, materialAmount);
+        for (Apartment apartment: this.apartments) {
+            if(!apartment.update()){
+                apartment.renovate(renovateAmount);
+            }
         }
     }
 
