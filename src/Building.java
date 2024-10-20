@@ -10,24 +10,14 @@ public class Building {
     private double recycleRate;
     private int numberOfResidents = 0;
 
-    /**
-     *
-     * @param lifetime the general lifetime of the building
-     * @param shellConstruct the shell construction of the building
-     * @param apartments array of all apartments
-     * @param recycleRate Recycle rate [0,1] when building is demolished
-     */
-    public Building(
-            int lifetime,
-            MaterialBag shellConstruct,
-            Apartment[] apartments,
-            double recycleRate
-    ) {
-        this.age = 0;
-        this.lifetime = lifetime;
-        this.shellConstruct = shellConstruct;
-        this.apartments = apartments;
-        this.recycleRate=recycleRate;
+    // TODO explain param
+    public Building( BuildingConfig config)
+    {
+        this.age = config.getAge();
+        this.lifetime = config.getLifetime();
+        this.shellConstruct = config.getShellConstruct();
+        this.apartments = config.getApartments();
+        this.recycleRate = config.getRecycleRate();
 
         for(Apartment apartment: apartments){
             this.numberOfResidents += apartment.getNumberOfResidents();

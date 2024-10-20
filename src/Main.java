@@ -64,8 +64,7 @@ public class Main {
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
             for (int j = 0; j < 10; j++) {
-                Simulation simulation = new Simulation(new Building(testCases.get(i).lifetime, testCases.get(i).shellConstruct,
-                        testCases.get(i).apartments, testCases.get(i).recycleRate));
+                Simulation simulation = new Simulation(new Building(testCases.get(i)));
                 results.add(simulation.runSimulation());
                 System.out.printf("Nachhaltigkeits-Score fuer Simulation%d: %f%n", j, results.get(j).getSustainabilityScore());
             }
