@@ -8,6 +8,7 @@ public class Building {
     /* The total costs of the initial building */
     private int renovationIndex;
     private double recycleRate;
+    private int numberOfResidents = 0;
 
     /**
      *
@@ -27,6 +28,10 @@ public class Building {
         this.shellConstruct = shellConstruct;
         this.apartments = apartments;
         this.recycleRate=recycleRate;
+
+        for(Apartment apartment: apartments){
+            this.numberOfResidents += apartment.getNumberOfResidents();
+        }
     }
 
 
@@ -45,7 +50,7 @@ public class Building {
             renovatingCost = renovatingCost.addCostContainer(cost);
         }
         this.renovationIndex = i%this.apartments.length;
-        return renovatingCost;
+        return renovatingCost.multiplyContainer((double) 1/numberOfResidents);
     }
 
     /**
@@ -64,13 +69,14 @@ public class Building {
             leftoverMaterialCost = leftoverMaterialCost.addCostContainer(apartment.demolish(recycleRate));
         }
 
-        return leftoverMaterialCost;
+        return leftoverMaterialCost.multiplyContainer((double) 1/numberOfResidents);
     }
 
     /**
      * Currently renovating all apartments with the same amount of renovating material.
      * Otherwise: Specify all apartments (by index for example) and how much they'll lose for
      * the aging.
+     * return: Average cost over residents
      * */
     public CostContainer age(){
         // Renovating all apartments the same amounts
@@ -79,13 +85,16 @@ public class Building {
             agingCosts = agingCosts.addCostContainer(shellConstruct.getTotalCost());
         }
         age++;
-        for (Apartment apartment: this.apartments) {
+
+        for (Apartment apartment: apartments) {
             if(!apartment.update()){
                 agingCosts = agingCosts.addCostContainer(apartment.renovate());
+
             }
             agingCosts = agingCosts.addCostContainer(apartment.currentCost());
+            System.out.println("UP: " + agingCosts.getCo2());
         }
-        return agingCosts;
+        return agingCosts.multiplyContainer((double) 1/numberOfResidents);
     }
 
     /**
