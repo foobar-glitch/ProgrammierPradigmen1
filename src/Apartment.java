@@ -68,10 +68,17 @@ public class Apartment {
      * Renovates the Apartment completely
      * @param renovationMaterial Material needed for Renovation
      */
-    public void renovate(MaterialBag renovationMaterial){
-        age=0;
-        material = material.add(renovationMaterial);
-        this.costs.addCostContainer(renovationMaterial.getTotalCost());
+    public CostContainer renovate(){
+        MaterialBag tmp = constructionMaterial.copy();
+        tmp.add(
+                material.times(-1)
+        );
+
+        // Reset to Original Glory
+        age = 0;
+        material = constructionMaterial;
+
+        return tmp.getTotalCost();
     }
 
     /**
