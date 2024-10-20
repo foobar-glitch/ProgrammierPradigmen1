@@ -1,0 +1,44 @@
+[
+  {
+    "name": "wood",
+    "co2_emission_per_ton": 15.0,
+    "price_per_ton": 350,
+    "deterioration_rate_per_year": 0.01
+  },
+  {
+    "name": "concrete",
+    "co2_emission_per_ton": 150.0,
+    "price_per_ton": 100,
+    "deterioration_rate_per_year": 0.02
+  },
+  {
+    "name": "steel",
+    "co2_emission_per_ton": 1900.0,
+    "price_per_ton": 1200,
+    "deterioration_rate_per_year": 0.005
+  },
+  {
+    "name": "glass",
+    "co2_emission_per_ton": 800.0,
+    "price_per_ton": 600,
+    "deterioration_rate_per_year": 0.015
+  },
+  {
+    "name": "brick",
+    "co2_emission_per_ton": 80.0,
+    "price_per_ton": 50,
+    "deterioration_rate_per_year": 0.03
+  },
+  {
+    "name": "aluminum",
+    "co2_emission_per_ton": 11000.0,
+    "price_per_ton": 2000,
+    "deterioration_rate_per_year": 0.001
+  },
+  {
+    "name": "asphalt",
+    "co2_emission_per_ton": 400.0,
+    "price_per_ton": 80,
+    "deterioration_rate_per_year": 0.025
+  }
+]

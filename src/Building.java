@@ -1,12 +1,12 @@
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class Building {
     private int lifetime;
+    private int age;
     /* The materials of the shell of the building */
     private MaterialBag shellConstruct;
     /* The materials of the building part that has to be renovated*/
-    private Apartment[] apartments;;
+    private Apartment[] apartments;
     /* The total costs of the initial building */
     private CostContainer totalCosts = new CostContainer(0, 0, 0);
 
@@ -21,6 +21,7 @@ public class Building {
             MaterialBag shellConstruct,
             HashMap<MaterialBag, Integer> apartmentsWithResidents
     ) {
+        this.age = 0;
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
         apartments = new Apartment[apartmentsWithResidents.size()];
@@ -70,16 +71,18 @@ public class Building {
      * */
     public void age(MaterialBag renovateAmount){
         // Renovating all apartments the same amount
-        lifetime -= 1;
+        age++;
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
                 apartment.renovate(renovateAmount);
             }
         }
     }
-
+    /**
+     * Check if the age is lower than the lifetime
+     * */
     public boolean checkAge(){
-        return lifetime > 0;
+        return age <= lifetime ;
     }
 
     /**
