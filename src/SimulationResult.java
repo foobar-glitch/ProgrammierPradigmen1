@@ -11,6 +11,8 @@ public class SimulationResult {
     private final ArrayList<Float> averageCostPerDecade;
     private final ArrayList<Float> averageHappinessPerDecade;
 
+    private float sustainabilityScore;
+
     public SimulationResult(ArrayList<CostContainer> costsPerYear, ArrayList<Float> happinessPerYear) {
         int simulationDuration = costsPerYear.size();
 
@@ -48,9 +50,11 @@ public class SimulationResult {
                 averageHappinessPerDecade.set(i / 10, newValueHappiness);
             }
         }
+
+        sustainabilityScore = extractSustainabilityScore();
     }
 
-    double extractSustainabilityScore() {
+   private  float extractSustainabilityScore() {
         float scaleScore = 1.0f;
         float weightCost = 1.0f / 3;
         float weightCo2 = 1.0f / 3;
@@ -67,7 +71,7 @@ public class SimulationResult {
         float scoreWaste = weightWaste * averageWasteOverLifetime;
         double scoreHappiness = 1 + Math.sqrt(weightHappiness * happinessByCost);
 
-       return scaleScore * Math.sqrt(1.0f/(scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness);
+       return (float) (scaleScore * Math.sqrt(1.0f/(scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
     }
 
 
@@ -89,5 +93,9 @@ public class SimulationResult {
 
     public ArrayList<Float> getAverageHappinessPerDecade() {
         return averageHappinessPerDecade;
+    }
+
+    public float getSustainabilityScore() {
+        return sustainabilityScore;
     }
 }
