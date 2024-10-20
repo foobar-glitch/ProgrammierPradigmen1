@@ -105,7 +105,4 @@ public class Apartment {
         return this.costs;
     }
 
-    public MaterialBag getConstructionMaterial() {
-        return constructionMaterial;
-    }
 }

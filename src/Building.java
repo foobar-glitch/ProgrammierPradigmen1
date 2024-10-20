@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Building {
     private int lifetime;
     private int age;
@@ -9,7 +7,6 @@ public class Building {
     private Apartment[] apartments;
     /* The total costs of the initial building */
     private CostContainer totalCosts = new CostContainer(0, 0, 0);
-
     /**
      *
      * @param lifetime the general lifetime of the building
@@ -36,7 +33,8 @@ public class Building {
      *
      * @param replaceMaterial The materials we are replacing
      * */
-    public void renovate(MaterialBag replaceMaterial) {
+    public void renovate(int amountApartments) {
+        MaterialBag replaceMaterial = apartments[0].getAusbau();
         CostContainer replaceMaterialCost = replaceMaterial.getTotalCost();
         this.totalCosts.addCostContainer(replaceMaterialCost);
     }
@@ -65,13 +63,14 @@ public class Building {
     public void age(){
         // Renovating all apartments the same amounts
         age++;
-        MaterialBag renovateAmount = apartments[0].getConstructionMaterial();
+        MaterialBag renovateAmount = apartments[0].getAusbau();
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
                 apartment.renovate(renovateAmount);
             }
         }
     }
+
     /**
      * Check if the age is lower than the lifetime
      * */
