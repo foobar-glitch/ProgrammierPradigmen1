@@ -71,10 +71,11 @@ public class Main {
                 System.out.printf("Nachhaltigkeits-Score fuer Simulation%d: %f%n", j, results.get(j).getSustainabilityScore());
             }
 
+
             // TODO ist der Median hier eine gute Metrik um einen raepresentativen Simulationsdurchlauf zu finden?
-                results.sort((r1, r2)
-                        -> (int) Math.signum(r1.getSustainabilityScore() - r2.getSustainabilityScore()));
+            results.sort((r1, r2) -> (int) Math.signum(r1.getSustainabilityScore() - r2.getSustainabilityScore()));
             SimulationResult medianResult = results.get(results.size()/2 + 1);
+            System.out.println(medianResult);
             System.out.println();
             System.out.printf("Alle Kennzahlen fuer den Simulationsdurchlauf mit dem Median-Nachhaltigkeits-Score:%n");
             System.out.printf("averageCostOverLifetime - %f%n", medianResult.getAverageCostOverLifetime());
@@ -87,6 +88,11 @@ public class Main {
                 System.out.printf("AverageHappinessDecade%d - %f%n", j+1, medianResult.getAverageHappinessPerDecade().get(j));
             }
             System.out.println();
+
         }
+
+
     }
+
+
 }

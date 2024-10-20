@@ -71,9 +71,7 @@ public class Apartment {
      */
     public CostContainer renovate(){
         MaterialBag tmp = constructionMaterial.copy();
-        tmp.add(
-                material.times(-1)
-        );
+        tmp = tmp.add(material.times(-1));
 
         // Reset to Original Glory
         age = 0;
@@ -118,7 +116,7 @@ public class Apartment {
                 leftoverMaterial.getWaste() * recycleRate
         );
         CostContainer tmp = material.getTotalCost();
-        tmp.subtractCostContainer(recycledProfit);
+        tmp = tmp.subtractCostContainer(recycledProfit);
         return tmp;
     }
 

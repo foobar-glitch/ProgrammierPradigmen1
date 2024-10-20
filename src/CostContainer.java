@@ -20,39 +20,37 @@ public class CostContainer {
      * This adds another CostContainer on the current one
      * @param other The other CostContainer that it is summing with
      */
-    public void addCostContainer(CostContainer other){
-        cost += other.getCost();
-        co2 += other.getCo2();
-        waste += other.getWaste();
+    public CostContainer addCostContainer(CostContainer other){
+        CostContainer tmp = new CostContainer(cost, co2, waste);
+
+        tmp.cost += other.getCost();
+        tmp.co2 += other.getCo2();
+        tmp.waste += other.getWaste();
+        return tmp;
     }
 
-    public void subtractCostContainer(CostContainer other){
-        cost -= other.getCost();
-        co2 -= other.getCo2();
-        waste -= other.getWaste();
+    public CostContainer subtractCostContainer(CostContainer other){
+        CostContainer tmp = new CostContainer(cost, co2, waste);
+
+        tmp.cost -= other.getCost();
+        tmp.co2 -= other.getCo2();
+        tmp.waste -= other.getWaste();
+        return tmp;
+
     }
 
     /**
      * Multiplying all costs by the amount of material
      * @param amount of the material
      */
-    public void multiplyContainer(float amount){
-        cost *= amount;
-        co2 *= amount;
-        waste *= amount;
+    public CostContainer multiplyContainer(float amount){
+        CostContainer tmp = new CostContainer(cost, co2, waste);
 
-    }
+        tmp.cost *= amount;
+        tmp.co2 *= amount;
+        tmp.waste *= amount;
+        return tmp;
 
-    public void addFinancialCost(float amount){
-        this.cost += amount;
-    }
-
-    public void addCo2(float amount){
-        this.co2 += amount;
-    }
-
-    public void addWaste(float amount){
-        this.waste += amount;
     }
 
     public float getCost(){

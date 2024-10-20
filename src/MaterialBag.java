@@ -32,21 +32,7 @@ public class MaterialBag {
         this.materialInventory.put(material, newAmount);
     }
 
-    /**
-     * This functions calculates the cost of all materials and costs of the
-     * current instance
-     *
-     * @return Costs of MaterialBag
-     */
-    public CostContainer calculateTotalCosts(){
-        CostContainer totalCost = new CostContainer(0f, 0f, 0f);
-        for (Material material : materialInventory.keySet()) {
-            CostContainer cost = material.getCost();
-            cost.multiplyContainer(materialInventory.get(material));
-            totalCost.addCostContainer(cost);
-        }
-        return totalCost;
-    }
+
 
     /**
      * This function makes a copy of the object in which the amount of every
@@ -124,7 +110,15 @@ public class MaterialBag {
         return size;
     }
 
-    public CostContainer getTotalCost() { return calculateTotalCosts(); }
+    public CostContainer getTotalCost() {
+        CostContainer totalCost = new CostContainer(0f, 0f, 0f);
+        for (Material material : materialInventory.keySet()) {
+            CostContainer cost = material.getCost();
+            cost = cost.multiplyContainer(materialInventory.get(material));
+            totalCost = totalCost.addCostContainer(cost);
+        }
+        return totalCost;
+    }
 
     public HashMap<Material, Float> getMaterialInventory() { return materialInventory; }
 }

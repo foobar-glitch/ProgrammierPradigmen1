@@ -42,7 +42,7 @@ public class Building {
         CostContainer cost = new CostContainer(0f, 0f, 0f);
         for(; i < (this.renovationIndex+amountApartments) % this.apartments.length; i++){
             cost = apartments[i].renovate();
-            renovatingCost.addCostContainer(cost);
+            renovatingCost = renovatingCost.addCostContainer(cost);
         }
         this.renovationIndex = i%this.apartments.length;
         return renovatingCost;
@@ -59,9 +59,9 @@ public class Building {
                 leftoverMaterialCost.getCo2() * recycleRate,
                 leftoverMaterialCost.getWaste() * recycleRate
         );
-        leftoverMaterialCost.subtractCostContainer(recycledProfit);
+        leftoverMaterialCost = leftoverMaterialCost.subtractCostContainer(recycledProfit);
         for(Apartment apartment: this.apartments){
-            leftoverMaterialCost.addCostContainer(apartment.demolish(recycleRate));
+            leftoverMaterialCost = leftoverMaterialCost.addCostContainer(apartment.demolish(recycleRate));
         }
 
         return leftoverMaterialCost;
@@ -75,13 +75,15 @@ public class Building {
     public CostContainer age(){
         // Renovating all apartments the same amounts
         CostContainer agingCosts = new CostContainer(0f, 0f, 0f);
-        if(age==0) agingCosts.addCostContainer(shellConstruct.getTotalCost());
+        if(age==0){
+            agingCosts = agingCosts.addCostContainer(shellConstruct.getTotalCost());
+        }
         age++;
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
-                agingCosts.addCostContainer(apartment.renovate());
+                agingCosts = agingCosts.addCostContainer(apartment.renovate());
             }
-            agingCosts.addCostContainer(apartment.currentCost());
+            agingCosts = agingCosts.addCostContainer(apartment.currentCost());
             System.out.println("UP: " + agingCosts.getCo2());
         }
         return agingCosts;
