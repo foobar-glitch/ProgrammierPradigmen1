@@ -13,12 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
         Material wood = new Material(
-                new CostContainer(350.0f, 0.015f, 0.01f));
+                new CostContainer(350.0f, 0.0015f, 0.01f));
         Material concrete = new Material(
-                new CostContainer(100.0f, 0.15f, 0.02f)
+                new CostContainer(100.0f, 0.015f, 0.02f)
         );
         Material steel = new Material(
-                new CostContainer(1200.0f, 1.9f, 0.005f)
+                new CostContainer(1200.0f, 0.09f, 0.005f)
         );
 
         /*
@@ -60,12 +60,12 @@ public class Main {
 
         String[] namesTestCases = {"Minimal", "Oekologisch", "Hochwertig"};
 
-        for (int i = 0; i < testCases.size(); i++) {
+        for (int i = 2; i < testCases.size(); i++) {
             System.out.printf("Test case %d: %s%n",i, namesTestCases[i]);
             System.out.println();
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 1; j++) {
                 Simulation simulation = new Simulation(testCases.get(i));
                 results.add(simulation.runSimulation());
                 System.out.printf("Nachhaltigkeits-Score fuer Simulation%d: %f%n", j, results.get(j).getSustainabilityScore());
