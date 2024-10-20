@@ -5,7 +5,8 @@ public class Building {
     private MaterialBag shellConstruct;
     /* The materials of the building part that has to be renovated*/
     private Apartment[] apartments;
-    /* The total costs of the initial building */private int index;
+    /* The total costs of the initial building */
+    private int renovationIndex;
 
     /**
      *
@@ -22,7 +23,7 @@ public class Building {
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
         this.apartments = apartments;
-
+        
     }
 
 
@@ -33,13 +34,13 @@ public class Building {
      * */
     public CostContainer renovate(int amountApartments) {
         CostContainer renovatingCost = new CostContainer(0, 0, 0);
-        int i = this.index;
+        int i = this.renovationIndex;
         CostContainer cost;
-        for(; i <= this.index+amountApartments % this.apartments.length; i++){
+        for(; i <= this.renovationIndex+amountApartments % this.apartments.length; i++){
             cost = apartments[i].renovate();
             renovatingCost.addCostContainer(cost);
         }
-        this.index = i;
+        this.renovationIndex = i;
         return renovatingCost;
     }
 
@@ -50,14 +51,18 @@ public class Building {
      *
      * */
     public CostContainer demolishing(float recycleRate){
-        CostContainer leftoverMaterial = shellConstruct.getTotalCost();
+        CostContainer leftoverMaterialCost = shellConstruct.getTotalCost();
         CostContainer recycledProfit = new CostContainer(
-                leftoverMaterial.getCost() * recycleRate,
-                leftoverMaterial.getCo2() * recycleRate,
-                leftoverMaterial.getWaste() * recycleRate
+                leftoverMaterialCost.getCost() * recycleRate,
+                leftoverMaterialCost.getCo2() * recycleRate,
+                leftoverMaterialCost.getWaste() * recycleRate
         );
-        leftoverMaterial.subtractCostContainer(recycledProfit);
-        return leftoverMaterial;
+        leftoverMaterialCost.subtractCostContainer(recycledProfit);
+        for(Apartment apartment: this.apartments){
+            leftoverMaterialCost.addCostContainer(apartment.demolish(recycleRate));
+        }
+
+        return leftoverMaterialCost;
     }
 
     /**

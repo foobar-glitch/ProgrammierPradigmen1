@@ -12,16 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
         Material wood = new Material(
-                new CostContainer(350.0f, 0.015f, 0.01f),
-                new CostContainer(10.0f, 0.01f, 0)
-        );
+                new CostContainer(350.0f, 0.015f, 0.01f));
         Material concrete = new Material(
-                new CostContainer(100.0f, 0.15f, 0.02f),
-                new CostContainer(7.0f, 0.02f, 0)
+                new CostContainer(100.0f, 0.15f, 0.02f)
         );
         Material steel = new Material(
-                new CostContainer(1200.0f, 1.9f, 0.005f),
-                new CostContainer(13.0f, 0.05f, 0)
+                new CostContainer(1200.0f, 1.9f, 0.005f)
         );
 
         /*
@@ -42,9 +38,10 @@ public class Main {
         * is the same size and need the same amount of material
          */
         int residentNumber = 1, numberOfApartments = 10, lifetimeApartment = 25, lifetimeBuilding = 50;
+        float happinessUpperBound = 1.0f
         Apartment[] allApartments = new Apartment[numberOfApartments];
         for(int i = 0; i < numberOfApartments; i++){
-            allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber);
+            allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber, happinessUpperBound);
         }
 
         Building building = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments);
