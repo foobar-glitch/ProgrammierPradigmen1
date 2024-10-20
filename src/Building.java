@@ -19,19 +19,12 @@ public class Building {
     public Building(
             int lifetime,
             MaterialBag shellConstruct,
-            HashMap<MaterialBag, Integer> apartmentsWithResidents
+            Apartment[] apartments
     ) {
         this.age = 0;
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
-        apartments = new Apartment[apartmentsWithResidents.size()];
-
-        int i = 0;
-        for (MaterialBag mb : apartmentsWithResidents.keySet()) {
-            apartments[i] = new Apartment(mb, lifetime, apartmentsWithResidents.get(mb));
-            i++;
-        }
-
+        this.apartments = apartments;
         /* Adding the costs of all elements into the total costs initially */
         CostContainer shellCost = shellConstruct.getTotalCost();
         this.totalCosts.addCostContainer(shellCost);

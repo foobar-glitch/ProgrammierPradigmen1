@@ -16,7 +16,7 @@ public class MaterialBag {
     /**
      *
      * @param material The material we are using
-     * @param amount The amount of material we are defining
+     * @param amount The amount of material we are defining in tons
      */
     public void setMaterial(Material material, float amount) {
         this.materialInventory.put(material, amount);
