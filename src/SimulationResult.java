@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 // used to be called "MetrikClass"
-public class SimulationResults {
+public class SimulationResult {
 
     // averages per person per year over the entire duration of the simulation
     private float averageCostOverLifetime;
@@ -12,7 +12,7 @@ public class SimulationResults {
     private final ArrayList<Float> averageCostPerDecade;
     private final ArrayList<Float> averageHappinessPerDecade;
 
-    public SimulationResults(ArrayList<CostContainer> costsPerYear, ArrayList<Float> happinessPerYear) {
+    public SimulationResult(ArrayList<CostContainer> costsPerYear, ArrayList<Float> happinessPerYear) {
         int simulationDuration = costsPerYear.size();
 
         averageCostOverLifetime = 0;
