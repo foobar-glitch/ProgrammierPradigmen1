@@ -26,7 +26,8 @@ public class Apartment {
         this.age = 0;
         this.lifetime = lifetime;
         this.residents = residents;
-        this.constructionMaterial = this.material = constructionMaterial;
+        this.constructionMaterial = constructionMaterial;
+        this.material = constructionMaterial;
         this.costs = constructionMaterial.getTotalCost();
         this.wasteMaterial = new MaterialBag();
         this.satisfactionFactor = maxHappiness;

@@ -7,10 +7,10 @@ import java.util.HashMap;
 public class MaterialBag {
     /* A hashmap of the material and its amount */
     private HashMap<Material, Float> materialInventory;
-    private CostContainer totalCost;
 
     public MaterialBag() {
         this.materialInventory = new HashMap<>();
+
     }
 
     /**
@@ -38,13 +38,14 @@ public class MaterialBag {
      *
      * @return Costs of MaterialBag
      */
-    public void calculateTotalCosts(){
-        CostContainer cost;
+    public CostContainer calculateTotalCosts(){
+        CostContainer totalCost = new CostContainer(0f, 0f, 0f);
         for (Material material : materialInventory.keySet()) {
-            cost = material.getCost();
+            CostContainer cost = material.getCost();
             cost.multiplyContainer(materialInventory.get(material));
             totalCost.addCostContainer(cost);
         }
+        return totalCost;
     }
 
     /**
@@ -123,7 +124,7 @@ public class MaterialBag {
         return size;
     }
 
-    public CostContainer getTotalCost() { return totalCost; }
+    public CostContainer getTotalCost() { return calculateTotalCosts(); }
 
     public HashMap<Material, Float> getMaterialInventory() { return materialInventory; }
 }
