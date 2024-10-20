@@ -66,6 +66,9 @@ public class SimulationResult {
             happinessByCost += averageHappinessPerDecade.get(i) / averageCostPerDecade.get(i);
         }
 
+        if(happinessByCost < 0){
+            happinessByCost = 0;
+        }
         double scoreCosts = weightCost * averageCostOverLifetime;
         double scoreCo2 = weightCo2 * averageCo2OverLifetime;
         double scoreWaste = weightWaste * averageWasteOverLifetime;

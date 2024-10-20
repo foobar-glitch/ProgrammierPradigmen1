@@ -45,13 +45,9 @@ public class Main {
             allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber, happinessUpperBound);
         }
 
-        Building building = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);
-        // simulate building:
-        // Simulate(building[i]) i e [0,9]
-
-        Building buildingMinimal = building;
-        Building buildingEco = building;
-        Building buildingHighEnd = building;
+        Building buildingMinimal = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);;
+        Building buildingEco = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);
+        Building buildingHighEnd = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);;
 
         ArrayList<Building> testCases = new ArrayList<Building>();
         testCases.add(buildingMinimal);
@@ -60,12 +56,12 @@ public class Main {
 
         String[] namesTestCases = {"Minimal", "Oekologisch", "Hochwertig"};
 
-        for (int i = 2; i < testCases.size(); i++) {
+        for (int i = 0; i < testCases.size(); i++) {
             System.out.printf("Test case %d: %s%n",i, namesTestCases[i]);
             System.out.println();
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
-            for (int j = 0; j < 1; j++) {
+            for (int j = 0; j < 10; j++) {
                 Simulation simulation = new Simulation(testCases.get(i));
                 results.add(simulation.runSimulation());
                 System.out.printf("Nachhaltigkeits-Score fuer Simulation%d: %f%n", j, results.get(j).getSustainabilityScore());
