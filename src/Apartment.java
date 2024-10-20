@@ -88,7 +88,7 @@ public class Apartment {
      * @return Factor of residents' satisfaction
      */
     public double getSatisfaction(){
-        double tmp = ((double) satisfactionFactor / lifetime)*(-Math.pow(age, 2)) + satisfactionFactor;
+        double tmp = ((double) satisfactionFactor / Math.pow(lifetime, 2))*(-Math.pow(age, 2)) + satisfactionFactor;
         return (double) tmp;
     }
 
