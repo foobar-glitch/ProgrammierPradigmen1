@@ -80,6 +80,28 @@ public class MaterialBag {
         return tmp;
     }
 
+    /**
+     * @param bag MaterialBag which should be added
+     * @return New MaterialBag made out of combining this and bag
+     */
+    public MaterialBag add(MaterialBag bag){
+        MaterialBag tmp = copy();
+        for(Material m : bag.materialInventory.keySet()){
+            if(tmp.materialInventory.containsKey(m))
+                tmp.addMaterial(m, bag.materialInventory.get(m));
+            else
+                tmp.setMaterial(m, bag.materialInventory.get(m));
+        }
+        return tmp;
+    }
+
+    /**
+     * @return Number of Materials inside MaterialBag
+     */
+    public int size(){
+        return materialInventory.keySet().size();
+    }
+
     public CostContainer getTotalCost() { return totalCost; }
 
     public HashMap<Material, Float> getMaterialInventory() { return materialInventory; }

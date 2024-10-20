@@ -29,11 +29,20 @@ public class Apartment {
      * Increments the Age (+1 year)
      * @return FALSE if the Apartment exceeded its lifetime
      * */
-    public boolean update(){
+    public int update(){
         // TODO: Calculate annual costs to cost vector
         // TODO: Perhaps automatically demolish Apartment if exceeds lifetime
         age+=1;
         return age<=lifetime;
+    }
+
+    /**
+     * Calculates the yearly costs of the Apartment
+     * @return Cost of this Year
+     */
+    public CostContainer currentCost(){
+        CostContainer tmp = new CostContainer(0,0, constructionMaterial.getTotalCost().getWaste());
+        return tmp;
     }
 
     /**
