@@ -4,13 +4,13 @@ public class CostContainer {
      * and environmental.
      * */
     /* Costs of material*/
-    private float cost;
+    private double cost;
     /* Usage of co2*/
-    private float co2;
+    private double co2;
     /* Amount of waste created */
-    private float waste;
+    private double waste;
 
-    public CostContainer(float cost, float co2, float waste) {
+    public CostContainer(double cost, double co2, double waste) {
         this.cost = cost;
         this.co2 = co2;
         this.waste = waste;
@@ -36,34 +36,34 @@ public class CostContainer {
      * Multiplying all costs by the amount of material
      * @param amount of the material
      */
-    public void multiplyContainer(float amount){
+    public void multiplyContainer(double amount){
         cost *= amount;
         co2 *= amount;
         waste *= amount;
 
     }
 
-    public void addFinancialCost(float amount){
+    public void addFinancialCost(double amount){
         this.cost += amount;
     }
 
-    public void addCo2(float amount){
+    public void addCo2(double amount){
         this.co2 += amount;
     }
 
-    public void addWaste(float amount){
+    public void addWaste(double amount){
         this.waste += amount;
     }
 
-    public float getCost(){
+    public double getCost(){
         return cost;
     }
 
-    public float getCo2(){
+    public double getCo2(){
         return co2;
     }
 
-    public float getWaste(){
+    public double getWaste(){
         return waste;
     }
 }

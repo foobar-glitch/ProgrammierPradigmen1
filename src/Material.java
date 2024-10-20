@@ -10,7 +10,7 @@ public class Material {
      * @param acquisitionCost cost of the acquisition of the material
      */
     public Material(CostContainer acquisitionCost) {
-        //float cost, float co2, float deteriorationRate
+        //double cost, double co2, double deteriorationRate
         this.acquisitionCost = acquisitionCost;
     }
 

@@ -6,12 +6,12 @@ public class Simulation {
     private Building building;
 
     private ArrayList<CostContainer> costsPerYear;
-    private ArrayList<Float> happinessPerYear;
+    private ArrayList<Double> happinessPerYear;
 
     public Simulation(Building building) {
         this.building = building;
         this.costsPerYear = new ArrayList<CostContainer>();
-        this.happinessPerYear = new ArrayList<Float>();
+        this.happinessPerYear = new ArrayList<Double>();
     }
 
     public SimulationResult runSimulation() {
@@ -24,7 +24,7 @@ public class Simulation {
             // amount of renovations will be correctly scaled for number of apartment and
             // the time it should take for a full renovation by the gebauede
             // random function can be anything as long as expected value = 1
-            float renovations = (float) Math.random();
+            double renovations = (double) Math.random();
             costsThisYear.addCostContainer(building.renovate(renovations));
             System.out.println("CO2_3: " + costsThisYear.getCo2());
 

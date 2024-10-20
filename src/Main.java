@@ -39,7 +39,7 @@ public class Main {
         * is the same size and need the same amount of material
          */
         int residentNumber = 1, numberOfApartments = 10, lifetimeApartment = 25, lifetimeBuilding = 50;
-        float happinessUpperBound = 1.0f;
+        double happinessUpperBound = 1.0f;
         Apartment[] allApartments = new Apartment[numberOfApartments];
         for(int i = 0; i < numberOfApartments; i++){
             allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber, happinessUpperBound);

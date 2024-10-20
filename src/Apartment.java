@@ -16,13 +16,13 @@ public class Apartment {
 
     /* Definition of the intervall [factor, 0] in which Satisfaction
     is measured in getSatisfaction */
-    private float  satisfactionFactor = 1;
+    private double  satisfactionFactor = 1;
 
 
     /**
      * Apartment is immediately built automatically after creating the Object
      */
-    public Apartment(MaterialBag constructionMaterial, int lifetime, int residents, float maxHappiness){
+    public Apartment(MaterialBag constructionMaterial, int lifetime, int residents, double maxHappiness){
         this.age = 0;
         this.lifetime = lifetime;
         this.residents = residents;
@@ -89,9 +89,9 @@ public class Apartment {
      * the state of their apartment
      * @return Factor of residents' satisfaction
      */
-    public float getSatisfaction(){
+    public double getSatisfaction(){
         double tmp = ((double) satisfactionFactor / lifetime)*(-Math.pow(age, 2)) + satisfactionFactor;
-        return (float) tmp;
+        return (double) tmp;
     }
 
     /**
@@ -109,7 +109,7 @@ public class Apartment {
     /**
      * Demolishes the Apartment and returns all costs
      */
-    public CostContainer demolish(float recycleRate){
+    public CostContainer demolish(double recycleRate){
         // TODO: Change this line and add demolishing costs
         CostContainer leftoverMaterial = material.getTotalCost();
         CostContainer recycledProfit = new CostContainer(

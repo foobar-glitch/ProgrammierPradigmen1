@@ -3,25 +3,25 @@ import java.util.ArrayList;
 public class SimulationResult {
 
     // averages per person per year over the entire duration of the simulation
-    private float averageCostOverLifetime;
-    private float averageCo2OverLifetime;
-    private float averageWasteOverLifetime;
+    private double averageCostOverLifetime;
+    private double averageCo2OverLifetime;
+    private double averageWasteOverLifetime;
 
     // averages per person per year over all decades tha
-    private final ArrayList<Float> averageCostPerDecade;
-    private final ArrayList<Float> averageHappinessPerDecade;
+    private final ArrayList<Double> averageCostPerDecade;
+    private final ArrayList<Double> averageHappinessPerDecade;
 
-    private float sustainabilityScore;
+    private double sustainabilityScore;
 
-    public SimulationResult(ArrayList<CostContainer> costsPerYear, ArrayList<Float> happinessPerYear) {
+    public SimulationResult(ArrayList<CostContainer> costsPerYear, ArrayList<Double> happinessPerYear) {
         int simulationDuration = costsPerYear.size();
 
         averageCostOverLifetime = 0;
         averageCo2OverLifetime = 0;
         averageWasteOverLifetime = 0;
 
-        averageCostPerDecade = new ArrayList<Float>();
-        averageHappinessPerDecade = new ArrayList<Float>();
+        averageCostPerDecade = new ArrayList<Double>();
+        averageHappinessPerDecade = new ArrayList<Double>();
 
         for (int i = 0; i < simulationDuration; i++) {
             averageCostOverLifetime += costsPerYear.get(i).getCost() / simulationDuration;
@@ -44,9 +44,9 @@ public class SimulationResult {
                 averageHappinessPerDecade.add(happinessPerYear.get(i) / scaleFactor);
             } else {
                 // i/10 is the index of the last element in the list
-                float newValueCosts = averageCostPerDecade.get(i / 10) + costsPerYear.get(i).getCost() / scaleFactor;
+                double newValueCosts = averageCostPerDecade.get(i / 10) + costsPerYear.get(i).getCost() / scaleFactor;
                 averageCostPerDecade.set(i / 10, newValueCosts);
-                float newValueHappiness = averageHappinessPerDecade.get(i / 10) + happinessPerYear.get(i) / scaleFactor;
+                double newValueHappiness = averageHappinessPerDecade.get(i / 10) + happinessPerYear.get(i) / scaleFactor;
                 averageHappinessPerDecade.set(i / 10, newValueHappiness);
             }
         }
@@ -54,48 +54,48 @@ public class SimulationResult {
         sustainabilityScore = extractSustainabilityScore();
     }
 
-   private  float extractSustainabilityScore() {
-        float scaleScore = 1.0f;
-        float weightCost = 1.0f / 3;
-        float weightCo2 = 1.0f / 3;
-        float weightWaste = 1.0f / 3;
-        float weightHappiness = 1.0f;
+   private  double extractSustainabilityScore() {
+        double scaleScore = 1.0f;
+        double weightCost = 1.0f / 3;
+        double weightCo2 = 1.0f / 3;
+        double weightWaste = 1.0f / 3;
+        double weightHappiness = 1.0f;
 
-        float happinessByCost = 0;
+        double happinessByCost = 0;
         for (int i = 0; i < averageHappinessPerDecade.size(); i++) {
             happinessByCost += averageHappinessPerDecade.get(i) / averageCostPerDecade.get(i);
         }
 
-        float scoreCosts = weightCost * averageCostOverLifetime;
-        float scoreCo2 = weightCo2 * averageCo2OverLifetime;
-        float scoreWaste = weightWaste * averageWasteOverLifetime;
+        double scoreCosts = weightCost * averageCostOverLifetime;
+        double scoreCo2 = weightCo2 * averageCo2OverLifetime;
+        double scoreWaste = weightWaste * averageWasteOverLifetime;
         double scoreHappiness = 1 + Math.sqrt(weightHappiness * happinessByCost);
 
-       return (float) (scaleScore * Math.sqrt(1.0f/(scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
+       return (double) (scaleScore * Math.sqrt(1.0f/(scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
     }
 
 
-    public float getAverageCostOverLifetime() {
+    public double getAverageCostOverLifetime() {
         return averageCostOverLifetime;
     }
 
-    public float getAverageCo2OverLifetime() {
+    public double getAverageCo2OverLifetime() {
         return averageCo2OverLifetime;
     }
 
-    public float getAverageWasteOverLifetime() {
+    public double getAverageWasteOverLifetime() {
         return averageWasteOverLifetime;
     }
 
-    public ArrayList<Float> getAverageCostPerDecade() {
+    public ArrayList<Double> getAverageCostPerDecade() {
         return averageCostPerDecade;
     }
 
-    public ArrayList<Float> getAverageHappinessPerDecade() {
+    public ArrayList<Double> getAverageHappinessPerDecade() {
         return averageHappinessPerDecade;
     }
 
-    public float getSustainabilityScore() {
+    public double getSustainabilityScore() {
         return sustainabilityScore;
     }
 }
