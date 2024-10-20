@@ -6,7 +6,7 @@ import java.util.HashMap;
  * */
 public class MaterialBag {
     /* A hashmap of the material and its amount */
-    private HashMap<Material, Float> materialInventory;
+    private HashMap<Material, Double> materialInventory;
 
     public MaterialBag() {
         this.materialInventory = new HashMap<>();
@@ -18,17 +18,17 @@ public class MaterialBag {
      * @param material The material we are using
      * @param amount The amount of material we are defining in tons
      */
-    public void setMaterial(Material material, float amount) {
+    public void setMaterial(Material material, double amount) {
         this.materialInventory.put(material, amount);
     }
 
-    public void subtractMaterial(Material material, float subtractAmount) {
-        float newAmount = this.materialInventory.get(material) - subtractAmount;
+    public void subtractMaterial(Material material, double subtractAmount) {
+        double newAmount = this.materialInventory.get(material) - subtractAmount;
         this.materialInventory.put(material, newAmount);
     }
 
-    public void addMaterial(Material material, float addAmount) {
-        float newAmount = this.materialInventory.get(material) + addAmount;
+    public void addMaterial(Material material, double addAmount) {
+        double newAmount = this.materialInventory.get(material) + addAmount;
         this.materialInventory.put(material, newAmount);
     }
 
@@ -41,7 +41,7 @@ public class MaterialBag {
      * @param multiplier Factor with which the amount of every material is multiplied
      * @return New, copied and (amount by multiplier) changed MaterialBag-Object
      */
-    public MaterialBag times(float multiplier){
+    public MaterialBag times(double multiplier){
         MaterialBag tmp = new MaterialBag();
         for(Material m : materialInventory.keySet()){
             tmp.setMaterial(
@@ -120,5 +120,5 @@ public class MaterialBag {
         return totalCost;
     }
 
-    public HashMap<Material, Float> getMaterialInventory() { return materialInventory; }
+    public HashMap<Material, Double> getMaterialInventory() { return materialInventory; }
 }

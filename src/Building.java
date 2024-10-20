@@ -7,7 +7,7 @@ public class Building {
     private Apartment[] apartments;
     /* The total costs of the initial building */
     private int renovationIndex;
-    private float recycleRate;
+    private double recycleRate;
 
     /**
      *
@@ -20,7 +20,7 @@ public class Building {
             int lifetime,
             MaterialBag shellConstruct,
             Apartment[] apartments,
-            float recycleRate
+            double recycleRate
     ) {
         this.age = 0;
         this.lifetime = lifetime;
@@ -35,7 +35,7 @@ public class Building {
      *
      * @param percentageRenovated percentage of Apartments which should be renovated
      * */
-    public CostContainer renovate(float percentageRenovated) {
+    public CostContainer renovate(double percentageRenovated) {
         CostContainer renovatingCost = new CostContainer(0, 0, 0);
         int i = this.renovationIndex;
         int amountApartments = (int) (this.apartments.length * percentageRenovated);
@@ -99,9 +99,9 @@ public class Building {
     /**
      * @return Average Satisfaction of the Residents
      */
-    public float satisfaction(){
+    public double satisfaction(){
 
-        float s = 0.0f;
+        double s = 0.0f;
         int people = 0;
         for(int i=0; i<apartments.length; i++){
             people+=apartments[i].getNumberOfResidents();
