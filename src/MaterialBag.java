@@ -80,11 +80,7 @@ public class MaterialBag {
         return tmp;
     }
 
-    public CostContainer getTotalCost() {
-        return totalCost;
-    }
+    public CostContainer getTotalCost() { return totalCost; }
 
-    public HashMap<Material, Float> getMaterialInventory() {
-        return materialInventory;
-    }
+    public HashMap<Material, Float> getMaterialInventory() { return materialInventory; }
 }

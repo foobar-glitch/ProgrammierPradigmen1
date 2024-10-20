@@ -1,27 +1,44 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+
 public class Building {
     private int lifetime;
     /* The materials of the shell of the building */
     private MaterialBag shellConstruct;
     /* The materials of the building part that has to be renovated*/
-    private MaterialBag renovatingConstruct;
+    private Apartment[] apartments;;
     /* The total costs of the initial building */
     private CostContainer totalCosts = new CostContainer(0, 0, 0);
 
-    public Building(int lifetime, MaterialBag shellConstruct, MaterialBag renovatingConstruct) {
+    /**
+     *
+     * @param lifetime the general lifetime of the building
+     * @param shellConstruct the shell construction of the building
+     * @param apartmentsWithResidents every apartment with its resident
+     */
+    public Building(
+            int lifetime,
+            MaterialBag shellConstruct,
+            HashMap<MaterialBag, Integer> apartmentsWithResidents
+    ) {
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
-        this.renovatingConstruct = renovatingConstruct;
+        apartments = new Apartment[apartmentsWithResidents.size()];
+
+        int i = 0;
+        for (MaterialBag mb : apartmentsWithResidents.keySet()) {
+            apartments[i] = new Apartment(mb, lifetime, apartmentsWithResidents.get(mb));
+            i++;
+        }
 
         /* Adding the costs of all elements into the total costs initially */
         CostContainer shellCost = shellConstruct.getTotalCost();
-        CostContainer renovatingCost = renovatingConstruct.getTotalCost();
         this.totalCosts.addCostContainer(shellCost);
-        this.totalCosts.addCostContainer(renovatingCost);
     }
 
 
     /**
-     * Depending on the household and degree of renovations replace material
+     * Depending on the household amount of material I have to renovate
      *
      * @param replaceMaterial The materials we are replacing
      * */
@@ -33,7 +50,7 @@ public class Building {
     /**
      * When demolishing you can recycle x percent of material and subtract that value
      * from the total costs
-     * @param recycleRate Is the rate at which we can recycle the material [0,1]
+     * @param recycleRate Is the rate at which we can recycle the leftover material [0,1]
      *
      * */
     public void demolishing(float recycleRate){
@@ -58,6 +75,9 @@ public class Building {
             renovatingConstruct.setMaterial(material, materialAmount);
         }
     }
-    
+
+    public boolean checkAge(){
+        return lifetime > 0;
+    }
 
 }
