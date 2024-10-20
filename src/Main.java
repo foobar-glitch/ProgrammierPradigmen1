@@ -5,9 +5,10 @@ import static java.lang.Math.round;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public Material parseMaterial(){
+    public Material getBuilding(){
         return null;
     }
+
 
 
     public static void main(String[] args) {
@@ -38,19 +39,19 @@ public class Main {
         * is the same size and need the same amount of material
          */
         int residentNumber = 1, numberOfApartments = 10, lifetimeApartment = 25, lifetimeBuilding = 50;
-        float happinessUpperBound = 1.0f
+        float happinessUpperBound = 1.0f;
         Apartment[] allApartments = new Apartment[numberOfApartments];
         for(int i = 0; i < numberOfApartments; i++){
             allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber, happinessUpperBound);
         }
 
-        Building building = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments);
+        Building building = new Building(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);
         // simulate building:
         // Simulate(building[i]) i e [0,9]
 
-        Building buildingMinimal;
-        Building buildingEco;
-        Building buildingHighEnd;
+        Building buildingMinimal = building;
+        Building buildingEco = building;
+        Building buildingHighEnd = building;
 
         ArrayList<Building> testCases = new ArrayList<Building>();
         testCases.add(buildingMinimal);

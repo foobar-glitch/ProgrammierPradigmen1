@@ -7,34 +7,38 @@ public class Building {
     private Apartment[] apartments;
     /* The total costs of the initial building */
     private int renovationIndex;
+    private float recycleRate;
 
     /**
      *
      * @param lifetime the general lifetime of the building
      * @param shellConstruct the shell construction of the building
      * @param apartments array of all apartments
+     * @param recycleRate Recycle rate [0,1] when building is demolished
      */
     public Building(
             int lifetime,
             MaterialBag shellConstruct,
-            Apartment[] apartments
+            Apartment[] apartments,
+            float recycleRate
     ) {
         this.age = 0;
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
         this.apartments = apartments;
-        
+        this.recycleRate=recycleRate;
     }
 
 
     /**
      * Depending on the household amount of material I have to renovate
      *
-     * @param amountApartments The number of apartments
+     * @param percentageRenovated percentage of Apartments which should be renovated
      * */
-    public CostContainer renovate(int amountApartments) {
+    public CostContainer renovate(float percentageRenovated) {
         CostContainer renovatingCost = new CostContainer(0, 0, 0);
         int i = this.renovationIndex;
+        int amountApartments = (int) (this.apartments.length * percentageRenovated);
         CostContainer cost;
         for(; i <= this.renovationIndex+amountApartments % this.apartments.length; i++){
             cost = apartments[i].renovate();
@@ -47,10 +51,8 @@ public class Building {
     /**
      * When demolishing you can recycle x percent of material and subtract that value
      * from the total costs
-     * @param recycleRate Is the rate at which we can recycle the leftover material [0,1]
-     *
      * */
-    public CostContainer demolishing(float recycleRate){
+    public CostContainer demolishing(){
         CostContainer leftoverMaterialCost = shellConstruct.getTotalCost();
         CostContainer recycledProfit = new CostContainer(
                 leftoverMaterialCost.getCost() * recycleRate,
@@ -72,8 +74,9 @@ public class Building {
      * */
     public CostContainer age(){
         // Renovating all apartments the same amounts
-        age++;
         CostContainer agingCosts = new CostContainer(0f, 0f, 0f);
+        if(age==0) agingCosts.addCostContainer(shellConstruct.getTotalCost());
+        age++;
         for (Apartment apartment: this.apartments) {
             if(!apartment.update()){
                 agingCosts.addCostContainer(apartment.renovate());

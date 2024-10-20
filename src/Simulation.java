@@ -22,7 +22,7 @@ public class Simulation {
             // amount of renovations will be correctly scaled for number of apartment and
             // the time it should take for a full renovation by the gebauede
             // random function can be anything as long as expected value = 1
-            float renovations = (float) (Math.random() * 2.0);
+            float renovations = (float) Math.random();
             costsThisYear.addCostContainer(building.renovate(renovations));
 
             double randomVal = Math.random();
@@ -32,8 +32,7 @@ public class Simulation {
                     costsPerYear.add(costsThisYear);
                     break;
                 }
-                // TODO replace/make up formula
-                costsThisYear.addCostContainer(building.renovate(20.0f));
+                costsThisYear.addCostContainer(building.renovate(0.9f));
             }
 
             costsThisYear.addCostContainer(building.age());
