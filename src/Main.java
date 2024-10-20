@@ -11,9 +11,18 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Material wood = new Material(350.0f, 0.015f, 0.01f);
-        Material concrete = new Material(100.0f, 0.15f, 0.02f);
-        Material steel = new Material(1200.0f, 1.9f, 0.005f);
+        Material wood = new Material(
+                new CostContainer(350.0f, 0.015f, 0.01f),
+                new CostContainer(10.0f, 0.01f, 0)
+        );
+        Material concrete = new Material(
+                new CostContainer(100.0f, 0.15f, 0.02f),
+                new CostContainer(7.0f, 0.02f, 0)
+        );
+        Material steel = new Material(
+                new CostContainer(1200.0f, 1.9f, 0.005f),
+                new CostContainer(13.0f, 0.05f, 0)
+        );
 
         /*
         * Assuming that we have 10 apartments with each 50 sqm.
