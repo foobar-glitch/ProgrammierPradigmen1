@@ -66,7 +66,7 @@ public class Main {
             System.out.printf("Alle Kennzahlen fuer den Simulationsdurchlauf mit dem Median-Nachhaltigkeits-Score:%n");
             System.out.printf("- Nachhaltigkeits-Score: %f%n", medianResult.getSustainabilityScore());
             System.out.printf("- averageCostOverLifetime: %f%n", medianResult.getAverageCostOverLifetime());
-            System.out.printf("- averageCo2OverLifetime: %f%n", medianResult.getAverageCostOverLifetime());
+            System.out.printf("- averageCo2OverLifetime: %f%n", medianResult.getAverageCo2OverLifetime());
             System.out.printf("- averageWasteOverLifetime: %f%n", medianResult.getAverageWasteOverLifetime());
             for (int j = 0; j < medianResult.getAverageCostPerDecade().size(); j++) {
                 System.out.printf("- AverageCostDecade%d: %f%n", j + 1, medianResult.getAverageCostPerDecade().get(j));
