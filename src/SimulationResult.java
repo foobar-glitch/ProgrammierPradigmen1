@@ -55,11 +55,11 @@ public class SimulationResult {
     }
 
    private  double extractSustainabilityScore() {
-        double scaleScore = 1.0f;
-        double weightCost = 1.0f / 3;
-        double weightCo2 = 1.0f / 3;
-        double weightWaste = 1.0f / 3;
-        double weightHappiness = 1.0f;
+        double scaleScore = 1.0;
+        double weightCost = 0.05 / 3;
+        double weightCo2 = 10.0 / 3;
+        double weightWaste = 100.0 / 3;
+        double weightHappiness = 1.0;
 
         double happinessByCost = 0;
         for (int i = 0; i < averageHappinessPerDecade.size(); i++) {
@@ -69,12 +69,12 @@ public class SimulationResult {
         if(happinessByCost < 0){
             happinessByCost = 0;
         }
-        double scoreCosts = weightCost * averageCostOverLifetime;
-        double scoreCo2 = weightCo2 * averageCo2OverLifetime;
-        double scoreWaste = weightWaste * averageWasteOverLifetime;
+        double scoreCosts = 1.0 / (weightCost * averageCostOverLifetime);
+        double scoreCo2 = 1.0 / (weightCo2 * averageCo2OverLifetime);
+        double scoreWaste = 1.0 / (weightWaste * averageWasteOverLifetime);
         double scoreHappiness = 1 + Math.sqrt(weightHappiness * happinessByCost);
 
-       return (double) (scaleScore * Math.sqrt(1.0f/(scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
+       return (double) (scaleScore * Math.sqrt((scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
     }
 
 
