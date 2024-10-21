@@ -8,22 +8,25 @@ public class Main {
         return null;
     }
 
-    private BuildingSpecs giveBuildSpecs(
+    static public BuildingSpecs giveBuildSpecs(
             Material[] materials,
-            Double[] amounts,
-            int residentNumber,
+            Double[] interiorAmounts,
+            Double[] shellAmounts,
+            int residentPerApartment,
             int numberOfApartments,
             int lifeTimeApartment,
             int lifeTimeBuilding,
-            float happinessUpperBound,
-            float recycleRate
+            double happinessUpperBound,
+            double recycleRate
     ){
-        MaterialBag materialBag = new MaterialBag(materials, amounts);
+        MaterialBag interiorMaterialInventory = new MaterialBag(materials, interiorAmounts);
+        MaterialBag shellMaterialInventory = new MaterialBag(materials, shellAmounts);
+        
         ApartmentSpecs apartmentSpec = new ApartmentSpecs(
-                materialBag, residentNumber, numberOfApartments, lifeTimeApartment, lifeTimeBuilding, happinessUpperBound
+                interiorMaterialInventory, residentPerApartment, numberOfApartments, lifeTimeApartment, lifeTimeBuilding, happinessUpperBound
                 );
         return new BuildingSpecs(
-                lifeTimeBuilding, materialBag, apartmentSpec, recycleRate
+                lifeTimeBuilding, shellMaterialInventory, apartmentSpec, recycleRate
         );
     }
 
@@ -39,21 +42,50 @@ public class Main {
         /*
         * Assuming that we have 10 apartments with each 50 sqm.
         * */
-        MaterialBag shellMinimal = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
-        MaterialBag  interiorMinimal = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsMinimal = new ApartmentSpecs(interiorMinimal, 1, 10, 20, 50 ,1.0);
-        BuildingSpecs buildingMinimal = new BuildingSpecs(50, shellMinimal, apartmentsMinimal, 0.5f);
 
-        MaterialBag shellEco = new MaterialBag(materials, new Double[] {350.0, 10.0, 2.50});
-        MaterialBag  interiorEco = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsEco = new ApartmentSpecs(interiorEco, 1, 10, 25, 50 ,1.0);
-        BuildingSpecs buildingEco = new BuildingSpecs(50, shellEco, apartmentsEco, 0.6f);
+        int residentsPerApartment = 1, numberOfApartments = 50,
+                lifeTimeApartment = 25, lifeTimeBuilding = 50;
+        double happinessUpperBound = 1.0f, recycleRate = 0.5f;
 
-        MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
-        MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsHighEnd = new ApartmentSpecs(interiorHighEnd, 1, 10, 25, 50 ,1.0);
-        BuildingSpecs buildingHighEnd = new BuildingSpecs(100, shellHighEnd, apartmentsHighEnd, 0.5f);
 
+        Double[] interiorMinimal = new Double[] {14.4, 2.0, 0.875};
+        Double[] shellMinimal = new Double[] {216.0, 30.0, 3.75};
+
+        Double[] shellEco = new Double[] {350.0, 10.0, 2.50};
+        Double[] interiorEco = new Double[] {14.4, 2.0, 0.875};
+
+        Double[] shellHighEnd = new Double[] {216.0, 30.0, 3.75};
+        Double[] interiorHighEnd = new Double[] {14.4, 2.0, 0.875};
+
+
+        BuildingSpecs buildingMinimal = giveBuildSpecs(
+                materials,
+                interiorMinimal,
+                shellMinimal,
+                residentsPerApartment,
+                numberOfApartments,
+                lifeTimeApartment,
+                lifeTimeBuilding,
+                happinessUpperBound,
+                recycleRate
+                );
+
+
+        BuildingSpecs buildingEco = giveBuildSpecs(
+                materials,
+                interiorEco,
+                shellEco, residentsPerApartment, numberOfApartments,
+                lifeTimeApartment, lifeTimeBuilding, happinessUpperBound,
+                recycleRate
+        );
+
+
+        BuildingSpecs buildingHighEnd = giveBuildSpecs(
+                materials, interiorHighEnd, shellHighEnd, residentsPerApartment,
+                numberOfApartments, lifeTimeApartment, 100, happinessUpperBound,
+                recycleRate
+        );
+        
         String[] namesTestCases = {
                 "MINIMAL",
                 "OEKOLOGISCH",
