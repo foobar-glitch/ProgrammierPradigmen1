@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
+// nominal abstraction: result of a single simulation; collects and calculates the metrics that the assignment specified
 public class SimulationResult {
+
+    CostContainer[] costsPerYear;
+    Double[] happinessPerYear;
 
     // averages per person per year over the entire duration of the simulation
     private double averageCostOverLifetime;
@@ -15,6 +19,11 @@ public class SimulationResult {
 
     public SimulationResult(ArrayList<CostContainer> costsPerYear, ArrayList<Double> happinessPerYear) {
         int simulationDuration = costsPerYear.size();
+
+        this.costsPerYear = new CostContainer[simulationDuration];
+        costsPerYear.toArray(this.costsPerYear);
+        this.happinessPerYear = new Double[simulationDuration];
+        happinessPerYear.toArray(this.happinessPerYear);
 
         averageCostOverLifetime = 0;
         averageCo2OverLifetime = 0;
@@ -54,6 +63,7 @@ public class SimulationResult {
         sustainabilityScore = extractSustainabilityScore();
     }
 
+    // nominal abstraction
    private  double extractSustainabilityScore() {
         double scaleScore = 1.0;
         double weightCost = 0.05 / 3;
@@ -77,6 +87,9 @@ public class SimulationResult {
        return (double) (scaleScore * Math.sqrt((scoreCosts + scoreCo2 + scoreWaste) * scoreHappiness));
     }
 
+    public CostContainer[] getCostsPerYear() {return costsPerYear;}
+
+    public Double[] getHappinessPerYear() {return happinessPerYear;}
 
     public double getAverageCostOverLifetime() {
         return averageCostOverLifetime;
