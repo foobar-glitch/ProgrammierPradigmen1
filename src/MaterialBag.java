@@ -8,9 +8,11 @@ public class MaterialBag {
     /* A hashmap of the material and its amount */
     private HashMap<Material, Double> materialInventory;
 
-    public MaterialBag() {
+    public MaterialBag(Material[] materials, Double[] amounts) {
         this.materialInventory = new HashMap<>();
-
+        for (int i = 0; i < materials.length; i++) {
+            materialInventory.put(materials[i], amounts[i]);
+        }
     }
 
     /**
