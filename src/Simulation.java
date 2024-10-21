@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+// contains state of the simulation and runs it
+// updates state with each time step accordingly
+// returns the values that we are measurement for
+// nominal abstraction: simulates the specific simulation that'S specified in the assignment
+// and returns measurements for a buildings sustainability
 public class Simulation {
 
 
@@ -14,14 +19,13 @@ public class Simulation {
         this.happinessPerYear = new ArrayList<Double>();
     }
 
+    // run the simulation with the parameters that have been specified in the objects initialization
+    // nominal abstraction: behaviour of the simulation models what the assignment's text described
     public SimulationResult runSimulation() {
         while (building.checkAge()) {
             CostContainer costsThisYear = new CostContainer(0.0f, 0.0f, 0.0f);
             happinessPerYear.add(building.satisfaction());
 
-            // amount of renovations will be correctly scaled for number of apartment and
-            // the time it should take for a full renovation by the gebauede
-            // random function can be anything as long as expected value = 1
             double renovations = (double) Math.random();
             costsThisYear = costsThisYear.addCostContainer(building.renovate(renovations));
 

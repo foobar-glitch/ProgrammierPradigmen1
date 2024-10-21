@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-// nominal abstraction: result of a single simulation; collects and calculates the metrics that the assignment specified
+// algebraic abstraction: result of a single simulation; collects and calculates the metrics that the assignment specified
 public class SimulationResult {
 
     CostContainer[] costsPerYear;
@@ -11,7 +11,7 @@ public class SimulationResult {
     private double averageCo2OverLifetime;
     private double averageWasteOverLifetime;
 
-    // averages per person per year over all decades tha
+    // averages per person per year over all decades that the simulations took place
     private final ArrayList<Double> averageCostPerDecade;
     private final ArrayList<Double> averageHappinessPerDecade;
 
@@ -63,7 +63,7 @@ public class SimulationResult {
         sustainabilityScore = extractSustainabilityScore();
     }
 
-    // nominal abstraction
+    // algebraic abstraction: calculates singular metric of sustainability
    private  double extractSustainabilityScore() {
         double scaleScore = 1.0;
         double weightCost = 0.05 / 3;
