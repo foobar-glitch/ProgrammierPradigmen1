@@ -10,7 +10,9 @@ public class Building {
     private double recycleRate;
     private int numberOfResidents = 0;
 
-    // TODO explain param
+    /**
+     * @param buildingSpecs the specifications of the building
+     * */
     public Building(BuildingSpecs buildingSpecs, ApartmentSpecs apartmentSpecs)
     {
         this.age = buildingSpecs.getAge();

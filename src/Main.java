@@ -75,14 +75,14 @@ public class Main {
                 materials,
                 interiorEco,
                 shellEco, residentsPerApartment, numberOfApartments,
-                lifeTimeApartment, lifeTimeBuilding, happinessUpperBound,
+                lifeTimeApartment, lifeTimeBuilding, 0.9,
                 recycleRate
         );
 
 
         BuildingSpecs buildingHighEnd = giveBuildSpecs(
                 materials, interiorHighEnd, shellHighEnd, residentsPerApartment,
-                numberOfApartments, lifeTimeApartment, 100, happinessUpperBound,
+                numberOfApartments, lifeTimeApartment, 100, 0.8,
                 recycleRate
         );
         
