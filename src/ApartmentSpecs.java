@@ -1,3 +1,6 @@
+// nominal abstraction: collects data that can be used to initialize an object of the Apartment class
+// this data is understood to specify properties of a single Apartment that's part of a building's interior
+// a buildings interior is modeled as a group of multiple apartments
 public class ApartmentSpecs {
     private MaterialBag material;
     private int residentNumber;
