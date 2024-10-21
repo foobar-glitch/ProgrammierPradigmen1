@@ -13,26 +13,35 @@ public class Main {
 
     public static void main(String[] args) {
         Material wood = new Material(
+                "wood",
                 new CostContainer(350.0f, 0.0015f, 0.01f));
         Material concrete = new Material(
+                "concrete",
                 new CostContainer(100.0f, 0.015f, 0.02f)
         );
         Material steel = new Material(
+                "steel",
                 new CostContainer(1200.0f, 0.09f, 0.005f)
         );
+
+        Material[] materials = new Material[] {
+                new Material("wood", new CostContainer(350.0f, 0.0015f, 0.01f)),
+                new Material("concrete", new CostContainer(100.0f, 0.015f, 0.02f)),
+                new Material("steel", new CostContainer(1200.0f, 0.09f, 0.005f))
+        };
 
         /*
         * Assuming that we have 10 apartments with each 50 sqm.
         * */
-        MaterialBag shellConstructionMaterial = new MaterialBag();
-        shellConstructionMaterial.setMaterial(concrete, 216.0f);
-        shellConstructionMaterial.setMaterial(steel, 30.0f);
-        shellConstructionMaterial.setMaterial(wood, 3.75f);
+        MaterialBag shellMinimal = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
+        MaterialBag  interiorMinimal = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
 
-        MaterialBag apartmentMaterial = new MaterialBag();
-        apartmentMaterial.setMaterial(concrete, 14.4f);
-        apartmentMaterial.setMaterial(steel, 2.0f);
-        apartmentMaterial.setMaterial(wood, 0.875f);
+        MaterialBag shellEco = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
+        MaterialBag  interiorEco = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
+
+        MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
+        MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
+
 
         /*
         * Each apartment has 1 resident. Every apartment
@@ -42,10 +51,10 @@ public class Main {
         double happinessUpperBound = 1.0f;
         Apartment[] allApartments = new Apartment[numberOfApartments];
         for(int i = 0; i < numberOfApartments; i++){
-            allApartments[i] = new Apartment(apartmentMaterial, lifetimeApartment, residentNumber, happinessUpperBound);
+            allApartments[i] = new Apartment(interiorMinimal, lifetimeApartment, residentNumber, happinessUpperBound);
         }
 
-        BuildingConfig config = new BuildingConfig(lifetimeBuilding, shellConstructionMaterial, allApartments, 0.5f);
+        BuildingConfig config = new BuildingConfig(lifetimeBuilding, shellMinimal, allApartments, 0.5f);
 
         BuildingConfig buildingMinimal = config;
         BuildingConfig buildingEco = config;
