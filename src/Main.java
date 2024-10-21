@@ -1,3 +1,5 @@
+import sun.nio.cs.ext.MacArabic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +7,27 @@ public class Main {
     public Material getBuilding(){
         return null;
     }
+
+    private BuildingSpecs giveBuildSpecs(
+            Material[] materials,
+            Double[] amounts,
+            int residentNumber,
+            int numberOfApartments,
+            int lifeTimeApartment,
+            int lifeTimeBuilding,
+            float happinessUpperBound,
+            float recycleRate
+    ){
+        MaterialBag materialBag = new MaterialBag(materials, amounts);
+        ApartmentSpecs apartmentSpec = new ApartmentSpecs(
+                materialBag, residentNumber, numberOfApartments, lifeTimeApartment, lifeTimeBuilding, happinessUpperBound
+                );
+        return new BuildingSpecs(
+                lifeTimeBuilding, materialBag, apartmentSpec, recycleRate
+        );
+    }
+
+
 
     public static void main(String[] args) {
         Material[] materials = new Material[] {
