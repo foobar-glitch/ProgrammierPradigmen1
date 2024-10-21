@@ -56,17 +56,17 @@ public class Main {
         testCases.add(buildingEco);
         testCases.add(buildingHighEnd);
 
-        String[] namesTestCases = {"Minimal", "Oekologisch", "Hochwertig"};
+        String[] namesTestCases = {"MINIMAL", "OEKOLOGISCH", "HOCHWERTIG"};
 
         for (int i = 0; i < testCases.size(); i++) {
-            System.out.printf("Test case %d: %s%n",i, namesTestCases[i]);
+            System.out.printf("---TEST CASE %d %s---%n", i + 1, namesTestCases[i]);
             System.out.println();
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
             for (int j = 0; j < 10; j++) {
                 Simulation simulation = new Simulation(testCases.get(i));
                 results.add(simulation.runSimulation());
-                System.out.printf("Nachhaltigkeits-Score fuer Simulation%d: %f%n", j, results.get(j).getSustainabilityScore());
+                System.out.printf("Nachhaltigkeits-Score fuer Simulation%d %f%n", j + 1, results.get(j).getSustainabilityScore());
             }
 
 
@@ -75,15 +75,15 @@ public class Main {
             SimulationResult medianResult = results.get(results.size()/2 + 1);
             System.out.println();
             System.out.printf("Alle Kennzahlen fuer den Simulationsdurchlauf mit dem Median-Nachhaltigkeits-Score:%n");
-            System.out.printf("Nachhaltigkeits-Score - %f%n", medianResult.getSustainabilityScore());
-            System.out.printf("averageCostOverLifetime - %f%n", medianResult.getAverageCostOverLifetime());
-            System.out.printf("averageCo2OverLifetime - %f%n", medianResult.getAverageCostOverLifetime());
-            System.out.printf("averageWasteOverLifetime - %f%n", medianResult.getAverageWasteOverLifetime());
+            System.out.printf("- Nachhaltigkeits-Score: %f%n", medianResult.getSustainabilityScore());
+            System.out.printf("- averageCostOverLifetime: %f%n", medianResult.getAverageCostOverLifetime());
+            System.out.printf("- averageCo2OverLifetime: %f%n", medianResult.getAverageCostOverLifetime());
+            System.out.printf("- averageWasteOverLifetime: %f%n", medianResult.getAverageWasteOverLifetime());
             for (int j = 0; j < medianResult.getAverageCostPerDecade().size(); j++) {
-                System.out.printf("AverageCostDecade%d - %f%n", j+1, medianResult.getAverageCostPerDecade().get(j));
+                System.out.printf("- AverageCostDecade%d: %f%n", j + 1, medianResult.getAverageCostPerDecade().get(j));
             }
             for (int j = 0; j < medianResult.getAverageCostPerDecade().size(); j++) {
-                System.out.printf("AverageHappinessDecade%d - %f%n", j+1, medianResult.getAverageHappinessPerDecade().get(j));
+                System.out.printf("- AverageHappinessDecade%d: %f%n", j + 1, medianResult.getAverageHappinessPerDecade().get(j));
             }
             System.out.println();
 
