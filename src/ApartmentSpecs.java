@@ -5,7 +5,7 @@ public class ApartmentSpecs {
     private int lifetimeApartment;
     private double happinessUpperBound;
 
-    public ApartmentSpecs(MaterialBag material, int residentNumber, int numberOfApartments, int lifetimeApartment, int  lifetimeBuilding, double happinessUpperBound) {
+    public ApartmentSpecs(MaterialBag material, int residentNumber, int numberOfApartments, int lifetimeApartment, double happinessUpperBound) {
         this.material = material;
         this.residentNumber = residentNumber;
         this.numberOfApartments = numberOfApartments;

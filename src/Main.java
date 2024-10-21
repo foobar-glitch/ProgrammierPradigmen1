@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         Material[] materials = new Material[] {
-                new Material("wood", new CostContainer(350.0, 0.0015, 0.01)),
-                new Material("concrete", new CostContainer(100.0, 0.015, 0.02)),
-                new Material("steel", new CostContainer(1200.0, 0.09, 0.005))
+                new Material("wood", new CostContainer(125.0, 0.4, 0.01)),
+                new Material("concrete", new CostContainer(250.0, 0.8, 0.15)),
+                new Material("steel", new CostContainer(1200.0, 1.4, 0.007))
         };
 
         /*
@@ -18,17 +18,17 @@ public class Main {
         * */
         MaterialBag shellMinimal = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorMinimal = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsMinimal = new ApartmentSpecs(interiorMinimal, 1, 10, 20, 50 ,1.0);
+        ApartmentSpecs apartmentsMinimal = new ApartmentSpecs(interiorMinimal, 1, 10, 20 ,0.8);
         BuildingSpecs buildingMinimal = new BuildingSpecs(50, shellMinimal, apartmentsMinimal, 0.5f);
 
-        MaterialBag shellEco = new MaterialBag(materials, new Double[] {350.0, 10.0, 2.50});
+        MaterialBag shellEco = new MaterialBag(materials, new Double[] {257.3, 10.0, 2.45});
         MaterialBag  interiorEco = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsEco = new ApartmentSpecs(interiorEco, 1, 10, 25, 50 ,1.0);
-        BuildingSpecs buildingEco = new BuildingSpecs(50, shellEco, apartmentsEco, 0.6f);
+        ApartmentSpecs apartmentsEco = new ApartmentSpecs(interiorEco, 1, 10, 20,0.9);
+        BuildingSpecs buildingEco = new BuildingSpecs(50, shellEco, apartmentsEco, 0.65f);
 
-        MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
-        MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentSpecs apartmentsHighEnd = new ApartmentSpecs(interiorHighEnd, 1, 10, 25, 50 ,1.0);
+        MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {282.3, 33.6, 4.65});
+        MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {11.6, 1.9, 1.3});
+        ApartmentSpecs apartmentsHighEnd = new ApartmentSpecs(interiorHighEnd, 1, 10, 25,1.0);
         BuildingSpecs buildingHighEnd = new BuildingSpecs(100, shellHighEnd, apartmentsHighEnd, 0.5f);
 
         String[] namesTestCases = {
