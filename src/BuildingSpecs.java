@@ -1,3 +1,6 @@
+// nominal abstraction: collects data that can be used to initialize an object of the Building class
+// this data is understood to specify properties of a building and its exterior that match
+// the properties of the buildings described in the assignment
 public class BuildingSpecs {
     public int lifetime;
     public int age;
