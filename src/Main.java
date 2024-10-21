@@ -1,4 +1,3 @@
-import sun.nio.cs.ext.MacArabic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,9 @@ public class Main {
 
     public static void main(String[] args) {
         Material[] materials = new Material[] {
-                new Material("wood", new CostContainer(350.0, 0.0015, 0.01)),
-                new Material("concrete", new CostContainer(100.0, 0.015, 0.02)),
-                new Material("steel", new CostContainer(1200.0, 0.09, 0.005))
+                new Material("wood", new CostContainer(125.0, 0.4, 0.01)),
+                new Material("concrete", new CostContainer(250.0, 0.8, 0.15)),
+                new Material("steel", new CostContainer(1200.0, 1.4, 0.007))
         };
 
         /*
@@ -95,9 +94,9 @@ public class Main {
                 buildingEco,
                 buildingHighEnd}));
         ArrayList<ApartmentSpecs> interiorsTestConfigs = new ArrayList<ApartmentSpecs>(List.of(new ApartmentSpecs[]{
-                apartmentsMinimal,
-                apartmentsEco,
-                apartmentsHighEnd
+                buildingMinimal.getApartmentSpecs(),
+                buildingEco.getApartmentSpecs(),
+                buildingHighEnd.getApartmentSpecs()
         }));
 
         for (int i = 0; i < buildingsTestConfigs.size(); i++) {

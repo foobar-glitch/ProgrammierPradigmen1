@@ -41,4 +41,8 @@ public class BuildingSpecs {
     }
 
     public double recycleRate;
+
+    public ApartmentSpecs getApartmentSpecs() {
+        return apartmentSpecs;
+    }
 }
