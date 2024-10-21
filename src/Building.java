@@ -11,13 +11,21 @@ public class Building {
     private int numberOfResidents = 0;
 
     // TODO explain param
-    public Building( BuildingConfig config)
+    public Building( BuildingConfig buildingConfig, ApartmentConfig apartmentConfig)
     {
-        this.age = config.getAge();
-        this.lifetime = config.getLifetime();
-        this.shellConstruct = config.getShellConstruct();
-        this.apartments = config.getApartments();
-        this.recycleRate = config.getRecycleRate();
+        this.age = buildingConfig.getAge();
+        this.lifetime = buildingConfig.getLifetime();
+        this.shellConstruct = buildingConfig.getShellConstruct();
+        this.recycleRate = buildingConfig.getRecycleRate();
+
+        this.apartments = new Apartment[apartmentConfig.getNumberOfApartments()];
+        for(int i = 0; i < apartmentConfig.getNumberOfApartments(); i++){
+            apartments[i] = new Apartment(
+                    apartmentConfig.getMaterial(),
+                    apartmentConfig.getLifetimeApartment(),
+                    apartmentConfig.getResidentNumber(),
+                    apartmentConfig.getHappinessUpperBound());
+        }
 
         for(Apartment apartment: apartments){
             this.numberOfResidents += apartment.getNumberOfResidents();
