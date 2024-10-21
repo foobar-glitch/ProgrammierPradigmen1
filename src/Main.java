@@ -23,7 +23,7 @@ public class Main {
         MaterialBag shellMaterialInventory = new MaterialBag(materials, shellAmounts);
         
         ApartmentSpecs apartmentSpec = new ApartmentSpecs(
-                interiorMaterialInventory, residentPerApartment, numberOfApartments, lifeTimeApartment, lifeTimeBuilding, happinessUpperBound
+                interiorMaterialInventory, residentPerApartment, numberOfApartments, lifeTimeApartment, happinessUpperBound
                 );
         return new BuildingSpecs(
                 lifeTimeBuilding, shellMaterialInventory, apartmentSpec, recycleRate
