@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    public Material getBuilding(){
-        return null;
-    }
 
     static public BuildingSpecs giveBuildSpecs(
             Material[] materials,
