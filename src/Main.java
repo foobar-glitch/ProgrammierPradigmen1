@@ -18,28 +18,28 @@ public class Main {
         * */
         MaterialBag shellMinimal = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorMinimal = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentConfig apartmentsMinimal = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
-        BuildingConfig buildingMinimal = new BuildingConfig(50, shellMinimal, apartmentsMinimal, 0.5f);
+        ApartmentSpecs apartmentsMinimal = new ApartmentSpecs(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingSpecs buildingMinimal = new BuildingSpecs(50, shellMinimal, apartmentsMinimal, 0.5f);
 
         MaterialBag shellEco = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorEco = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentConfig apartmentsEco = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
-        BuildingConfig buildingEco = new BuildingConfig(50, shellEco, apartmentsEco, 0.5f);
+        ApartmentSpecs apartmentsEco = new ApartmentSpecs(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingSpecs buildingEco = new BuildingSpecs(50, shellEco, apartmentsEco, 0.5f);
 
         MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
-        ApartmentConfig apartmentsHighEnd = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
-        BuildingConfig buildingHighEnd = new BuildingConfig(50, shellEco, apartmentsEco, 0.5f);
+        ApartmentSpecs apartmentsHighEnd = new ApartmentSpecs(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingSpecs buildingHighEnd = new BuildingSpecs(50, shellEco, apartmentsEco, 0.5f);
 
         String[] namesTestCases = {
                 "MINIMAL",
                 "OEKOLOGISCH",
                 "HOCHWERTIG"};
-        ArrayList<BuildingConfig> buildingsTestConfigs = new ArrayList<BuildingConfig>(List.of(new BuildingConfig[]{
+        ArrayList<BuildingSpecs> buildingsTestConfigs = new ArrayList<BuildingSpecs>(List.of(new BuildingSpecs[]{
                 buildingMinimal,
                 buildingEco,
                 buildingHighEnd}));
-        ArrayList<ApartmentConfig> interiorsTestConfigs = new ArrayList<ApartmentConfig>(List.of(new ApartmentConfig[]{
+        ArrayList<ApartmentSpecs> interiorsTestConfigs = new ArrayList<ApartmentSpecs>(List.of(new ApartmentSpecs[]{
                 apartmentsMinimal,
                 apartmentsEco,
                 apartmentsHighEnd

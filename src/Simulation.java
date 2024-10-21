@@ -8,8 +8,8 @@ public class Simulation {
     private ArrayList<CostContainer> costsPerYear;
     private ArrayList<Double> happinessPerYear;
 
-    public Simulation(BuildingConfig buildingConfig, ApartmentConfig apartmentConfig) {
-        this.building = new Building(buildingConfig, apartmentConfig);
+    public Simulation(BuildingSpecs buildingSpecs, ApartmentSpecs apartmentSpecs) {
+        this.building = new Building(buildingSpecs, apartmentSpecs);
         this.costsPerYear = new ArrayList<CostContainer>();
         this.happinessPerYear = new ArrayList<Double>();
     }

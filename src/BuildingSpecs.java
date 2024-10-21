@@ -1,26 +1,26 @@
-public class BuildingConfig {
+public class BuildingSpecs {
     public int lifetime;
     public int age;
     public MaterialBag shellConstruct;
-    public ApartmentConfig apartmentConfig;
+    public ApartmentSpecs apartmentSpecs;
 
     /**
      *
      * @param lifetime the general lifetime of the building
      * @param shellConstruct the shell construction of the building
-     * @param apartmentConfig config for the buildings apartments
+     * @param apartmentSpecs config for the buildings apartments
      * @param recycleRate Recycle rate [0,1] when building is demolished
      */
-    public BuildingConfig(
+    public BuildingSpecs(
             int lifetime,
             MaterialBag shellConstruct,
-            ApartmentConfig apartmentConfig,
+            ApartmentSpecs apartmentSpecs,
             double recycleRate
     ) {
         this.age = 0;
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
-        this.apartmentConfig = apartmentConfig;
+        this.apartmentSpecs = apartmentSpecs;
         this.recycleRate=recycleRate;
     }
 

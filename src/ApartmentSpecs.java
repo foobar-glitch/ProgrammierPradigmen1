@@ -1,11 +1,11 @@
-public class ApartmentConfig {
+public class ApartmentSpecs {
     private MaterialBag material;
     private int residentNumber;
     private int numberOfApartments;
     private int lifetimeApartment;
     private double happinessUpperBound;
 
-    public ApartmentConfig(MaterialBag material, int residentNumber, int numberOfApartments, int lifetimeApartment, int  lifetimeBuilding, double happinessUpperBound) {
+    public ApartmentSpecs(MaterialBag material, int residentNumber, int numberOfApartments, int lifetimeApartment, int  lifetimeBuilding, double happinessUpperBound) {
         this.material = material;
         this.residentNumber = residentNumber;
         this.numberOfApartments = numberOfApartments;
