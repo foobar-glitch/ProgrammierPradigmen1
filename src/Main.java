@@ -1,16 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.round;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public Material getBuilding(){
         return null;
     }
-
-
 
     public static void main(String[] args) {
         Material[] materials = new Material[] {
@@ -25,43 +19,31 @@ public class Main {
         MaterialBag shellMinimal = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorMinimal = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
         ApartmentConfig apartmentsMinimal = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingConfig buildingMinimal = new BuildingConfig(50, shellMinimal, apartmentsMinimal, 0.5f);
 
         MaterialBag shellEco = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorEco = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
         ApartmentConfig apartmentsEco = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingConfig buildingEco = new BuildingConfig(50, shellEco, apartmentsEco, 0.5f);
 
         MaterialBag shellHighEnd = new MaterialBag(materials, new Double[] {216.0, 30.0, 3.75});
         MaterialBag  interiorHighEnd = new MaterialBag(materials, new Double[] {14.4, 2.0, 0.875});
         ApartmentConfig apartmentsHighEnd = new ApartmentConfig(interiorMinimal, 1, 10, 25, 50 ,1.0);
+        BuildingConfig buildingHighEnd = new BuildingConfig(50, shellEco, apartmentsEco, 0.5f);
 
-        /*
-        * Each apartment has 1 resident. Every apartment
-        * is the same size and need the same amount of material
-         */
-
-
-
-
-
-        BuildingConfig config = new BuildingConfig(50, shellMinimal, apartmentsMinimal, 0.5f);
-
-        BuildingConfig buildingMinimal = config;
-        BuildingConfig buildingEco = config;
-        BuildingConfig buildingHighEnd = config;
-
+        String[] namesTestCases = {
+                "MINIMAL",
+                "OEKOLOGISCH",
+                "HOCHWERTIG"};
         ArrayList<BuildingConfig> buildingsTestConfigs = new ArrayList<BuildingConfig>(List.of(new BuildingConfig[]{
                 buildingMinimal,
                 buildingEco,
                 buildingHighEnd}));
-
         ArrayList<ApartmentConfig> interiorsTestConfigs = new ArrayList<ApartmentConfig>(List.of(new ApartmentConfig[]{
                 apartmentsMinimal,
                 apartmentsEco,
                 apartmentsHighEnd
         }));
-
-
-        String[] namesTestCases = {"MINIMAL", "OEKOLOGISCH", "HOCHWERTIG"};
 
         for (int i = 0; i < buildingsTestConfigs.size(); i++) {
             System.out.printf("---TEST CASE %d %s---%n", i + 1, namesTestCases[i]);
@@ -75,7 +57,6 @@ public class Main {
             }
 
 
-            // TODO ist der Median hier eine gute Metrik um einen raepresentativen Simulationsdurchlauf zu finden?
             results.sort((r1, r2) -> (int) Math.signum(r1.getSustainabilityScore() - r2.getSustainabilityScore()));
             SimulationResult medianResult = results.get(results.size()/2 + 1);
             System.out.println();
