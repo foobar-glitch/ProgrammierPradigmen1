@@ -7,6 +7,7 @@ public class Building {
     private Apartment[] apartments;
     /* The total costs of the initial building */
     private int renovationIndex;
+    private final CostContainer heatingAndMaintenanceCosts;
     private double recycleRate;
     private int numberOfResidents = 0;
 
@@ -16,6 +17,7 @@ public class Building {
         this.age = buildingSpecs.getAge();
         this.lifetime = buildingSpecs.getLifetime();
         this.shellConstruct = buildingSpecs.getShellConstruct();
+        this.heatingAndMaintenanceCosts = buildingSpecs.getHeatingAndMaintenanceCosts();
         this.recycleRate = buildingSpecs.getRecycleRate();
 
         this.apartments = new Apartment[apartmentSpecs.getNumberOfApartments()];
@@ -78,20 +80,21 @@ public class Building {
      * */
     public CostContainer age(){
         // Renovating all apartments the same amounts
-        CostContainer agingCosts = new CostContainer(0f, 0f, 0f);
+        CostContainer ageingCosts = new CostContainer(0f, 0f, 0f);
         if(age==0){
-            agingCosts = agingCosts.addCostContainer(shellConstruct.getTotalCost());
+            ageingCosts = ageingCosts.addCostContainer(shellConstruct.getTotalCost());
         }
         age++;
 
         for (Apartment apartment: apartments) {
             if(!apartment.update()){
-                agingCosts = agingCosts.addCostContainer(apartment.renovate());
+                ageingCosts = ageingCosts.addCostContainer(apartment.renovate());
 
             }
-            agingCosts = agingCosts.addCostContainer(apartment.currentCost());
+            ageingCosts = ageingCosts.addCostContainer(apartment.currentCost());
         }
-        return agingCosts.multiplyContainer((double) 1/numberOfResidents);
+        ageingCosts.addCostContainer(heatingAndMaintenanceCosts.multiplyContainer(apartments.length));
+        return ageingCosts.multiplyContainer((double) 1/numberOfResidents);
     }
 
     /**

@@ -3,6 +3,8 @@ public class BuildingSpecs {
     public int age;
     public MaterialBag shellConstruct;
     public ApartmentSpecs apartmentSpecs;
+    private final CostContainer heatingAndMaintenanceCosts;
+    public double recycleRate;
 
     /**
      *
@@ -15,12 +17,14 @@ public class BuildingSpecs {
             int lifetime,
             MaterialBag shellConstruct,
             ApartmentSpecs apartmentSpecs,
+            CostContainer heatingAndMaintenanceCosts,
             double recycleRate
     ) {
         this.age = 0;
         this.lifetime = lifetime;
         this.shellConstruct = shellConstruct;
         this.apartmentSpecs = apartmentSpecs;
+        this.heatingAndMaintenanceCosts = heatingAndMaintenanceCosts;
         this.recycleRate=recycleRate;
     }
 
@@ -40,5 +44,12 @@ public class BuildingSpecs {
         return recycleRate;
     }
 
-    public double recycleRate;
+    public ApartmentSpecs getApartmentSpecs() {
+        return apartmentSpecs;
+    }
+
+    public CostContainer getHeatingAndMaintenanceCosts() {
+        return heatingAndMaintenanceCosts;
+    }
+
 }
