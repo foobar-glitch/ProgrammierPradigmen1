@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -89,23 +90,26 @@ public class Main {
                 "MINIMAL",
                 "OEKOLOGISCH",
                 "HOCHWERTIG"};
-        ArrayList<BuildingSpecs> buildingsTestConfigs = new ArrayList<BuildingSpecs>(List.of(new BuildingSpecs[]{
+
+        BuildingSpecs[] buildingsTestConfigs = new BuildingSpecs[] {
                 buildingMinimal,
                 buildingEco,
-                buildingHighEnd}));
-        ArrayList<ApartmentSpecs> interiorsTestConfigs = new ArrayList<ApartmentSpecs>(List.of(new ApartmentSpecs[]{
+                buildingHighEnd
+        };
+
+        ApartmentSpecs[] interiorsTestConfigs = new ApartmentSpecs[] {
                 buildingMinimal.getApartmentSpecs(),
                 buildingEco.getApartmentSpecs(),
                 buildingHighEnd.getApartmentSpecs()
-        }));
+        };
 
-        for (int i = 0; i < buildingsTestConfigs.size(); i++) {
+        for (int i = 0; i < buildingsTestConfigs.length; i++) {
             System.out.printf("---TEST CASE %d %s---%n", i + 1, namesTestCases[i]);
             System.out.println();
             // ten simulations per case
             ArrayList<SimulationResult> results = new ArrayList<SimulationResult>();
             for (int j = 0; j < 10; j++) {
-                Simulation simulation = new Simulation(buildingsTestConfigs.get(i), interiorsTestConfigs.get(i));
+                Simulation simulation = new Simulation(buildingsTestConfigs[i], interiorsTestConfigs[i]);
                 results.add(simulation.runSimulation());
                 System.out.printf("Nachhaltigkeits-Score fuer Simulation%d %f%n", j + 1, results.get(j).getSustainabilityScore());
             }
